@@ -1,0 +1,108 @@
+# Copyright (c) 2003-2017 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
+author=GenePattern
+taskDoc=doc.html
+description=Performs single sample GSEA Projection
+commandLine=<R2.15_Rscript> <libdir>ssGSEAProjection.R -l<libdir> -i<input.gct.file>  -o<output.file.prefix> -D<gene.sets.database.files> -c<gene.symbol.column>  -s<gene.set.selection> -n<sample.normalization.method> -w<weighting.exponent> -v<min.gene.set.size> -C<combine.mode>
+JVMLevel=
+language=R
+name=ssGSEAProjection
+fileFormat=gct
+privacy=public
+userid=GenePattern
+quality=production
+taskType=Projection
+version=Beta series: Unified the Gene Set DB selector parameters and better downloading of MSigDB files.  Removed Java dependency.
+cpuType=any
+os=any
+LSID=urn\:lsid\:broad.mit.edu\:cancer.software.genepattern.module.analysis\:00270\:999999999
+publicationDate=03/22/2012 11\:14
+
+p1_MODE=IN
+p1_TYPE=FILE
+p1_default_value=
+p1_description=Input gct file.  This module does not allow missing values.
+p1_fileFormat=gct
+p1_name=input.gct.file
+p1_optional=
+p1_prefix_when_specified=
+p1_type=java.io.File
+p1_value=
+
+p2_default_value=
+p2_description=Output filename prefix.  If unspecified, is set to <prefix of input.gct.file>.PROJ.
+p2_fileFormat=
+p2_name=output.file.prefix
+p2_optional=on
+p2_prefix_when_specified=
+p2_type=java.lang.String
+p2_value=
+
+p3_MODE=IN
+p3_TYPE=FILE
+p3_default_value=
+p3_description=Gene sets database from GSEA website.  Upload a gene set if your gene set is not listed as a choice from MsigDB.
+p3_fileFormat=gmt;gmx;grp
+p3_numValues=1+
+p3_flag=
+p3_name=gene.sets.database.files
+p3_optional=
+p3_prefix=
+p3_prefix_when_specified=
+p3_type=java.io.File
+p3_value=ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c1.all.v6.0.symbols.gmt\=c1.all.v6.0.symbols.gmt [Positional];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c2.all.v6.0.symbols.gmt\=c2.all.v6.0.symbols.gmt [Curated];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c2.cgp.v6.0.symbols.gmt\=c2.cgp.v6.0.symbols.gmt [Curated];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c2.cp.v6.0.symbols.gmt\=c2.cp.v6.0.symbols.gmt [Curated];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c2.cp.biocarta.v6.0.symbols.gmt\=c2.cp.biocarta.v6.0.symbols.gmt [Curated];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c2.cp.kegg.v6.0.symbols.gmt\=c2.cp.kegg.v6.0.symbols.gmt [Curated];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c2.cp.reactome.v6.0.symbols.gmt\=c2.cp.reactome.v6.0.symbols.gmt [Curated];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c3.all.v6.0.symbols.gmt\=c3.all.v6.0.symbols.gmt [Motif];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c3.mir.v6.0.symbols.gmt\=c3.mir.v6.0.symbols.gmt [Motif];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c3.tft.v6.0.symbols.gmt\=c3.tft.v6.0.symbols.gmt [Motif];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c4.all.v6.0.symbols.gmt\=c4.all.v6.0.symbols.gmt [Computational];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c4.cgn.v6.0.symbols.gmt\=c4.cgn.v6.0.symbols.gmt [Computational];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c4.cm.v6.0.symbols.gmt\=c4.cm.v6.0.symbols.gmt [Computational];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c5.all.v6.0.symbols.gmt\=c5.all.v6.0.symbols.gmt [Gene Ontology];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c5.bp.v6.0.symbols.gmt\=c5.bp.v6.0.symbols.gmt [Gene Ontology];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c5.cc.v6.0.symbols.gmt\=c5.cc.v6.0.symbols.gmt [Gene Ontology];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c5.mf.v6.0.symbols.gmt\=c5.mf.v6.0.symbols.gmt [Gene Ontology];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c6.all.v6.0.symbols.gmt\=c6.all.v6.0.symbols.gmt [Oncogenic Signatures];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c7.all.v6.0.symbols.gmt\=c7.all.v6.0.symbols.gmt [Immunologic signatures];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/h.all.v6.0.symbols.gmt\=h.all.v6.0.symbols.gmt [Hallmarks]
+
+p4_default_value=Name
+p4_description=Specifies the gct data column containing gene symbols.  In most cases this will be "Column 1".
+p4_fileFormat=
+p4_name=gene.symbol.column
+p4_optional=
+p4_prefix_when_specified=
+p4_type=java.lang.String
+p4_value=Name=\Column 1;Description\=Column 2
+
+p5_default_value=ALL
+p5_description=Comma-separated list of gene set names on which to project expression data. Set to "ALL" if projecting to all defined gene sets.
+p5_fileFormat=
+p5_name=gene.set.selection
+p5_optional=
+p5_prefix_when_specified=
+p5_type=java.lang.String
+p5_value=
+
+p6_default_value=rank
+p6_description=Method used to normalize gene expression data
+p6_fileFormat=
+p6_name=sample.normalization.method
+p6_optional=
+p6_prefix_when_specified=
+p6_type=java.lang.String
+p6_value=rank;log;log.rank
+
+p7_default_value=0.75
+p7_description=Module authors strongly recommend against changing from default.
+p7_fileFormat=
+p7_name=weighting.exponent
+p7_optional=
+p7_prefix_when_specified=
+p7_type=java.lang.Float
+p7_value=
+
+p8_default_value=10
+p8_description=Gene sets with overlap smaller than this are excluded from the analysis.
+p8_fileFormat=
+p8_name=min.gene.set.size
+p8_optional=
+p8_prefix_when_specified=
+p8_type=java.lang.Integer
+p8_value=
+
+p9_default_value=combine.add
+p9_description=Options for combining enrichment scores for paired *_UP and *_DN gene sets
+p9_fileFormat=
+p9_name=combine.mode
+p9_optional=
+p9_prefix=
+p9_prefix_when_specified=
+p9_type=java.lang.String
+p9_value=combine.off;combine.replace;combine.add
+p9_default_value=combine.add
