@@ -2,7 +2,7 @@
 
 **Single-sample GSEA (ssGSEA)**, an extension of **Gene Set Enrichment Analysis (GSEA)**, calculates separate enrichment scores for each pairing of a sample and gene set.  Each ssGSEA enrichment score represents the degree to which the genes in a particular gene set are coordinately up- or down-regulated within a sample.  The ssGSEAProjection module for GenePattern is a free genomic analysis program written in the R language implementing this method in a form suitable for [GenePattern](http://www.genepattern.org/).
 
-See the [module documentation](docs/v9/index.html) for tips on usage.
+See the [module documentation](https://gsea-msigdb.github.io/ssGSEAProjection-gpmodule/v9/index.html) for tips on usage.
 
 # License
 
