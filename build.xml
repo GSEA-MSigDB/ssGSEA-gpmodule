@@ -4,16 +4,76 @@
 -->
 
 <project basedir="" default="create-zip" name="ssGSEAProjection">
-    <property name="dirOffset" value="../common_module_code"/>
-    <import file="${dirOffset}/commontargets.xml"/>
 
-    <target name="create-zip" depends="init">
-        <antcall target="prezip"/>
-            <mkdir dir="build" />
-        <zip destfile="${dest.dir}/${ant.project.name}.zip" whenempty="fail" defaultexcludes="true">
+    <target name="init">
+        <tstamp />
+        <property name="test.version" value="999999999"/>
+        <property name="dest.dir" value="build" />
+
+        <mkdir dir="build" />
+    </target>
+
+    <!-- Bump the build number and set the quality flag if we're doing a prerelease or release -->
+    <target name="init_prerelease" depends="init">
+        <property name="prereleasingModule" value="true" />
+        <property name="quality.level" value="preproduction" />
+    </target>
+
+    <target name="init_release" depends="init">
+        <property name="prereleasingModule" value="false" />
+        <property name="quality.level" value="production" />
+    </target>
+
+    <target name="update-build-props" depends="init">
+        <!-- Increment the build number for use in the LSID & version-->
+        <propertyfile file="release.properties">
+          <entry key="build.number" type="int" operation="+" default="1" />
+          <entry key="build.timestamp" type="date" operation="=" value="${time.stamp}" pattern="EEE, d MMM yyyy HH:mm:ss Z" />
+        </propertyfile>
+    </target>
+
+    <target name="load-build-props">
+      <property file="release.properties" />
+    </target>
+
+    <target name="create-zip" depends="init,addLSIDtoManifest">
+        <zip destfile="${dest.dir}/${ant.project.name}_v${full.version}.zip" whenempty="fail" defaultexcludes="true">
             <fileset dir="src" includes="*.R"/>
             <fileset dir="." includes="manifest, *.html, *.pdf"/>
         </zip>
-        <antcall target="postzip"/>
+    </target>
+    <target name="prereleaseModule" depends="init_prerelease,update-build-props,load-build-props,create-zip,resetManifest" />
+    
+    <target name="releaseModule" depends="init_release,update-build-props,load-build-props,create-zip,resetManifest" />
+    
+    <target name="addLSIDtoManifest" depends="init,getLSID">
+        <tstamp>
+            <format property="publish.time" pattern="MM/dd/yyyy HH:mm " />
+        </tstamp>
+
+        <!-- Work on a copy of the manifest to avoid unnecessary churn in version control. -->
+        <copy file="manifest" tofile="manifest.tmp" preservelastmodified="true" overwrite="true" />
+
+        <!-- NOTE: this will overwrite any LSID= already in the manifest file -->
+        <propertyfile file="manifest">
+            <entry key="quality" value="${quality.level}" />
+            <entry key="LSID" value="${LSID}" />
+            <entry key="publicationDate" value="${publish.time}" />
+        </propertyfile>
+    </target>
+
+    <target name="getLSID">
+        <property name="LSID.key" value="${ant.project.name}.lsid" />
+        <condition property="full.version" value="${release.version}.${build.number}" else="DEV_BUILD">
+            <isset property="release.version" />
+        </condition>
+        <condition property="LSID" value="${LSID.noVersion}:${full.version}" else="${LSID.noVersion}:${test.version}">
+            <isset property="release.version" />
+        </condition>
+        <echo>${LSID.key} = ${LSID}</echo>
+    </target>
+
+    <target name="resetManifest">
+        <move file="manifest.tmp" tofile="manifest" preservelastmodified="true" overwrite="true" failonerror="true" />
     </target>
 </project>
