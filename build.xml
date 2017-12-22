@@ -36,16 +36,16 @@
       <property file="release.properties" />
     </target>
 
-    <target name="create-zip" depends="load-release-props,addLSIDtoManifest,resetManifest">
+    <target name="create-zip" depends="load-release-props,addLSIDtoManifest">
         <zip destfile="${dest.dir}/${ant.project.name}_v${full.version}.zip" whenempty="fail" defaultexcludes="true">
             <fileset dir="src" includes="*.R"/>
             <fileset dir="." includes="manifest, *.html, *.pdf"/>
         </zip>
     </target>
 	
-    <target name="prereleaseModule" depends="init_prerelease,update-release-props,create-zip" />
+    <target name="prereleaseModule" depends="init_prerelease,update-release-props,create-zip,resetManifest" />
     
-    <target name="releaseModule" depends="init_release,update-release-props,create-zip" />
+    <target name="releaseModule" depends="init_release,update-release-props,create-zip,resetManifest" />
     
     <target name="addLSIDtoManifest" depends="init,getLSID">
         <tstamp>
@@ -55,7 +55,7 @@
         <!-- Work on a copy of the manifest to avoid unnecessary churn in version control. -->
         <copy file="manifest" tofile="manifest.tmp" preservelastmodified="true" overwrite="true" />
 
-        <!-- NOTE: this will overwrite any LSID= already in the manifest file -->
+        <!-- NOTE: this will overwrite any LSID already in the manifest file -->
         <propertyfile file="manifest">
             <entry key="quality" value="${quality.level}" />
             <entry key="LSID" value="${LSID}" />
