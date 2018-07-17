@@ -3,7 +3,7 @@
   Copyright (c) 2012-2017 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
 -->
 
-<project basedir="" default="create-zip" name="ssGSEAProjection">
+<project basedir="" default="devReleaseModule" name="ssGSEAProjection">
 
     <target name="init">
         <tstamp />
@@ -11,6 +11,13 @@
         <property name="dest.dir" value="build" />
 
         <mkdir dir="build" />
+    </target>
+
+    <target name="init_devrelease" depends="init">
+    	<!-- Set the full.version property so that it doesn't come in from release.properties -->
+        <property name="full.version" value="DEV_BUILD" />    	
+        <property name="prereleasingModule" value="false" />
+        <property name="quality.level" value="development" />
     </target>
 
     <!-- Bump the build number and set the quality flag if we're doing a prerelease or release -->
@@ -36,16 +43,18 @@
       <property file="release.properties" />
     </target>
 
-    <target name="create-zip" depends="load-release-props,addLSIDtoManifest">
+    <target name="create-zip" depends="addLSIDtoManifest">
         <zip destfile="${dest.dir}/${ant.project.name}_v${full.version}.zip" whenempty="fail" defaultexcludes="true">
             <fileset dir="src" includes="*.R"/>
             <fileset dir="." includes="manifest, *.html, *.pdf"/>
         </zip>
     </target>
-	
-    <target name="prereleaseModule" depends="init_prerelease,update-release-props,create-zip,resetManifest" />
+
+    <target name="devReleaseModule" depends="init_devrelease,load-release-props,create-zip,resetManifest" />
+
+    <target name="prereleaseModule" depends="init_prerelease,update-release-props,load-release-props,create-zip,resetManifest" />
     
-    <target name="releaseModule" depends="init_release,update-release-props,create-zip,resetManifest" />
+    <target name="releaseModule" depends="init_release,update-release-props,load-release-props,create-zip,resetManifest" />
     
     <target name="addLSIDtoManifest" depends="init,getLSID">
         <tstamp>
@@ -69,7 +78,7 @@
             <isset property="release.version" />
         </condition>
         <condition property="LSID" value="${LSID.noVersion}:${full.version}" else="${LSID.noVersion}:${test.version}">
-            <isset property="release.version" />
+            <not><equals arg1="${full.version}" arg2="DEV_BUILD" /></not>
         </condition>
         <echo>${LSID.key} = ${LSID}</echo>
     </target>
