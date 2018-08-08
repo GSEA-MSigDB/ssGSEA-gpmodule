@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2003-2018 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
+-->
+<project basedir="." default="run_tests.local" name="gpunit_runner">
+    <!-- Set the environment variables GPUNIT_HOME and GPUNIT_DATA_HOME with paths to 
+         your GpUnit repository and the downloaded test data, respectively. 
+    -->
+    <property environment="env" />
+    <property name="gpunit.dir" value="${env.GPUNIT_HOME}" />
+    <tempfile property="temp.props.file" prefix="gpunit.runtime_" suffix=".properties" deleteonexit="true" />
+    
+    <target name="initLocal">
+        <copy file="gpunit.local.properties" tofile="${temp.props.file}">
+            <filterset><filter token="DATA_HOME" value="${env.GPUNIT_DATA_HOME}" /></filterset>
+        </copy>
+    </target>
+    <target name="initBetaAmi">
+        <!-- Call with the GPBeta AMI test user PW as a command-line property -->
+        <copy file="gpunit.gpbeta_ami.properties" tofile="${temp.props.file}">
+            <filterset><filter token="DATA_HOME" value="${env.GPUNIT_DATA_HOME}" /></filterset>
+            <filterset><filter token="TEST_PW" value="${test_pw}" /></filterset>
+        </copy>
+    </target>
+    
+    <target name="run_tests">
+        <property name="gpunit.properties" value="${temp.props.file}" />
+        <ant antfile="${gpunit.dir}/build.xml" target="gpunit" />
+        <delete file="${temp.props.file}" />
+    </target>
+    
+    <target name="run_tests.local" depends="initLocal,run_tests" />
+    <target name="run_tests.gpbeta_ami" depends="initBetaAmi,run_tests" />
+    
+    <target name="clean">
+        <delete dir="test_runs" file="System.out" />
+    </target>
+</project>

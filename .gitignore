@@ -1,3 +1,4 @@
 /bin/
 /build/
-/ssgseaprojection.jar
+/gpunit_functionality/test_runs
+/gpunit_functionality/gpunit.runtime_*.properties
