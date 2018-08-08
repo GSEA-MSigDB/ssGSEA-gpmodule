@@ -18,8 +18,10 @@
     <target name="initBetaAmi">
         <!-- Call with the GPBeta AMI test user PW as a command-line property -->
         <copy file="gpunit.gpbeta_ami.properties" tofile="${temp.props.file}">
-            <filterset><filter token="DATA_HOME" value="${env.GPUNIT_DATA_HOME}" /></filterset>
-            <filterset><filter token="TEST_PW" value="${test_pw}" /></filterset>
+            <filterset>
+                <filter token="DATA_HOME" value="${env.GPUNIT_DATA_HOME}" />
+                <filter token="TEST_PW" value="${test_pw}" />
+            </filterset>
         </copy>
     </target>
     
