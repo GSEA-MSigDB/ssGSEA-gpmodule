@@ -1,5 +1,5 @@
 # Copyright (c) 2003-2017 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
- 
+
 DEBUG <<- FALSE
 options("warn"=-1)
 
@@ -17,7 +17,7 @@ info <- function(...) {
 check.extension <- function(file.name, extension) {
 	ext <- regexpr(paste(extension,"$",sep=""), tolower(file.name))
 	if(ext[[1]] == -1) {
-		file.name <- paste(file.name, extension, sep="") 
+		file.name <- paste(file.name, extension, sep="")
 	}
 	return(file.name)
 }
@@ -29,8 +29,8 @@ read.dataset <- function(file) {
 	result <- regexpr(paste(".res","$",sep=""), tolower(file))
 	if(result[[1]] != -1)
 		return(read.res(file))
-	
-	stop("Input is not a res or gct file.")	
+
+	stop("Input is not a res or gct file.")
 }
 
 wait.for.lsf.jobs <- function(jobs, interval, maxSleep, del=T) {
@@ -41,17 +41,17 @@ wait.for.lsf.jobs <- function(jobs, interval, maxSleep, del=T) {
 			state <- lsf.job.status(job)
 			if (is.null(state)) {
 				scat("lsf: unknown error retrieving job state.\n")
-			} else if (state == "NULL" || state == "ZOMBI" || state == "UNKWN" || 
+			} else if (state == "NULL" || state == "ZOMBI" || state == "UNKWN" ||
 				state == "ERROR") {
 				scat("lsf: job is in an error state.\n")
 			} else if (state == "EXIT") {
 				scat("lsf: job did not complete successfully ... no results\n")
-				
+
 			} else if (state == "DONE") {
-			
+
 			} else {
 				newJobs <- c(newJobs, job)
-			}	
+			}
 		}
 		jobs <- newJobs
 		Sys.sleep(interval)
@@ -78,7 +78,7 @@ wait.for.lsf.job <- function(job) {
 }
 
 zip.file <- function(path.to.zip.exe, outfile, pattern, options="") {
-	outfile <- check.extension(outfile, ".zip") 
+	outfile <- check.extension(outfile, ".zip")
 	isWindows <- Sys.info()[["sysname"]]=="Windows"
 	if(isWindows) {
 		path.to.zip.exe <- sub("Program Files", "Progra~1", path.to.zip.exe)
@@ -107,7 +107,7 @@ get.column.indices <- function(array.names, array.list.file) {
 		if(length(idx) > 0) {
 			iter.cols <- c(iter.cols, idx)
 		}
-	}	
+	}
 	if(is.null(iter.cols)) {
 		exit("No arrays in array list file found in cn file")
 	}
@@ -124,7 +124,7 @@ read.cn <- function(file, column.indices=NULL) {
 	dataColClasses[1] <- "character"
 	dataColClasses[2] <- "character"
 	dataColClasses[3] <- "integer"
-	
+
    if(is.null(column.indices)) {
 	   for(i in 4:length(dataColClasses)) {
 		   dataColClasses[i] <- "numeric"
@@ -136,16 +136,16 @@ read.cn <- function(file, column.indices=NULL) {
 	}
 
 	data.matrix<-read.table(file=file, row.names=NULL, header=T, quote="", comment.char="", sep="\t", as.is=T, colClasses=dataColClasses, fill=F)
-	
-	
+
+
 	chrom <- data.matrix[,2]
 	chrom[chrom=="X"]<-"23"
 	chrom[chrom=="Y"]<-"24"
 	chrom <- as.integer(chrom)
-	
+
 	maploc <- data.matrix[,3]
 	maploc <- as.integer(maploc)
-	
+
 	genomdat <- as.matrix(data.matrix[,-(1:3)])
 
 	return(list(chrom=chrom, genomdat=genomdat, maploc=maploc, array.names=array.names))
@@ -153,40 +153,40 @@ read.cn <- function(file, column.indices=NULL) {
 
 
 read.gct <- function(file) {
-	if (is.character(file)) 
-        if (file == "") 
+	if (is.character(file))
+        if (file == "")
             file <- stdin()
         else {
             file <- file(file, "r")
             on.exit(close(file))
         }
-	if (!inherits(file, "connection")) 
+	if (!inherits(file, "connection"))
         stop("argument `file' must be a character string or connection")
-		  
+
    # line 1 version
-	version <- readLines(file, n=1) 
-	
+	version <- readLines(file, n=1)
+
 	# line 2 dimensions
-	dimensions <- scan(file, what=list("integer", "integer"), nmax=1, quiet=TRUE)   
+	dimensions <- scan(file, what=list("integer", "integer"), nmax=1, quiet=TRUE)
 	rows <- dimensions[[1]]
 	columns <- dimensions[[2]]
 	# line 3 Name\tDescription\tSample names...
-	column.names <- read.table(file, header=FALSE, quote='', nrows=1, sep="\t", fill=FALSE, comment.char='') 
+	column.names <- read.table(file, header=FALSE, quote='', nrows=1, sep="\t", fill=FALSE, comment.char='')
 	column.names <-column.names[3:length(column.names)]
 
-	
+
 	if(length(column.names)!=columns) {
-		stop(paste("Number of sample names", length(column.names), "not equal to the number of columns", columns, "."))	
+		stop(paste("Number of sample names", length(column.names), "not equal to the number of columns", columns, "."))
 	}
-	
+
 	colClasses <- c(rep(c("character"), 2), rep(c("double"), columns))
-	
+
 	x <- read.table(file, header=FALSE, quote="", row.names=NULL, comment.char="", sep="\t", colClasses=colClasses, fill=FALSE)
-	row.descriptions <- as.character(x[,2]) 
+	row.descriptions <- as.character(x[,2])
 	data <- as.matrix(x[seq(from=3, to=dim(x)[2], by=1)])
-	
+
 	column.names <- column.names[!is.na(column.names)]
-	
+
 	colnames(data) <- column.names
 	row.names(data) <- x[,1]
 	return(list(row.descriptions=row.descriptions, data=data))
@@ -199,29 +199,29 @@ read.res <- function(filename)
   # delete the NA entries for the tab-tab columns
   headings <- headings[!is.na(headings)]
   colNames <- headings[3:length(headings)]
-   
+
   # read line 2: sample descriptions
   descriptions <- scan(filename, skip=1, nlines=1, sep="\t", fill=F, blank.lines.skip=F, quiet=T, what="character")
-  
+
   # delete the NA entries for the tab-tab columns
- 
+
   if(length(descriptions) > 0) {
   	descriptions <- descriptions[seq(from = 2, to = length(descriptions), by=2)]
   }
-  # handle optionally missing number of lines (not used, but need to decide whether to ignore before actual data)  
+  # handle optionally missing number of lines (not used, but need to decide whether to ignore before actual data)
   numLines <- as.list(read.table(filename, header=FALSE, skip=2, nrows=1, sep="\t", fill=FALSE, comment.char=''))
   numLines <- numLines[!is.na(numLines)] # remove NA entries
   skip <- (3 - ifelse(length(numLines) == 1, 0, 1)) # skip 3 lines if line number is present, 2 otherwise
 
-  columns <- length(headings) - 2 # substract 2 for gene description and name 
+  columns <- length(headings) - 2 # substract 2 for gene description and name
   colClasses <- c(c("character", "character"), rep(c("double", "character"), columns))
- 
-  
+
+
   x <- .my.read.table(filename, header=FALSE, sep="\t", comment.char="", skip=skip, colClasses=colClasses, row.names=NULL, quote=NULL, fill=FALSE)
-  
+
   data <- as.matrix(x[c(seq(from=3,length=(dim(x)[2]-3)/2, by=2))])
   calls <- as.matrix(x[c(seq(from=4,length=(dim(x)[2]-3)/2, by=2))])
-  
+
   row.names <- x[,2]
   row.names(data) <- row.names
   row.names(calls) <- row.names
@@ -232,35 +232,35 @@ read.res <- function(filename)
 }
 
 # like read.table, but doesn't check to make sure all rows have same number of columns
-.my.read.table <- function (file, header = FALSE, sep = "", quote = "\"'", dec = ".", row.names, col.names, as.is = FALSE, na.strings = "NA", colClasses, nrows = -1, skip = 0, check.names = TRUE, fill = !blank.lines.skip, strip.white = FALSE, blank.lines.skip = TRUE, comment.char = "") 
+.my.read.table <- function (file, header = FALSE, sep = "", quote = "\"'", dec = ".", row.names, col.names, as.is = FALSE, na.strings = "NA", colClasses, nrows = -1, skip = 0, check.names = TRUE, fill = !blank.lines.skip, strip.white = FALSE, blank.lines.skip = TRUE, comment.char = "")
 {
 	if (is.character(file)) {
 		file <- file(file, "r")
 		on.exit(close(file))
 	}
-	if (!inherits(file, "connection")) 
+	if (!inherits(file, "connection"))
 		stop("argument `file' must be a character string or connection")
 	if (!isOpen(file)) {
 		open(file, "r")
 		on.exit(close(file))
 	}
-	if (skip > 0) 
+	if (skip > 0)
 		readLines(file, skip)
-		
-	first <- readLines(file, n=1) 
+
+	first <- readLines(file, n=1)
 	pushBack(first, file)
-	temp <- strsplit(first, "\t") 
+	temp <- strsplit(first, "\t")
 	cols <- as.integer(length(temp[[1]])) # number of columns
-	 
-	if (missing(col.names)) 
+
+	if (missing(col.names))
         col.names <- paste("V", 1:cols, sep = "")
-	
+
 	what <- rep(list(""), cols)
 	names(what) <- col.names
 	colClasses[colClasses %in% c("real", "double")] <- "numeric"
 	known <- colClasses %in% c("logical", "integer", "numeric", "complex", "character")
 	what[known] <- sapply(colClasses[known], do.call, list(0))
-    
+
 	data <- scan(file = file, what = what, sep = sep, quote = quote, dec = dec, nmax = nrows, skip = 0, na.strings = na.strings, quiet = TRUE, fill = fill, strip.white = strip.white, blank.lines.skip = blank.lines.skip, multi.line = FALSE, comment.char = comment.char)
 	nlines <- length(data[[1]])
 	if (cols != length(data)) {
@@ -271,7 +271,7 @@ read.res <- function(filename)
         as.is <- rep(as.is, length = cols)
 	}
 	else if (is.numeric(as.is)) {
-	  if (any(as.is < 1 | as.is > cols)) 
+	  if (any(as.is < 1 | as.is > cols))
 			stop("invalid numeric as.is expression")
 	  i <- rep(FALSE, cols)
 	  i[as.is] <- TRUE
@@ -279,14 +279,14 @@ read.res <- function(filename)
 	}
 	else if (is.character(as.is)) {
 	  i <- match(as.is, col.names, 0)
-	  if (any(i <= 0)) 
+	  if (any(i <= 0))
 			warning("not all columns named in as.is exist")
 	  i <- i[i > 0]
 	  as.is <- rep(FALSE, cols)
 	  as.is[i] <- TRUE
 	}
-	else if (length(as.is) != cols) 
-		stop(paste("as.is has the wrong length", length(as.is), 
+	else if (length(as.is) != cols)
+		stop(paste("as.is has the wrong length", length(as.is),
 			"!= cols =", cols))
 	if (missing(row.names)) {
 		if (rlabp) {
@@ -300,7 +300,7 @@ read.res <- function(filename)
 	}
 	else if (is.character(row.names)) {
 		if (length(row.names) == 1) {
-			rowvar <- (1:cols)[match(col.names, row.names, 0) == 
+			rowvar <- (1:cols)[match(col.names, row.names, 0) ==
 				 1]
 			row.names <- data[[rowvar]]
 			data <- data[-rowvar]
@@ -322,7 +322,7 @@ write.res <-
 # write a res structure as a file
 #
 function(res, filename, check.file.extension=TRUE)
-{	
+{
 	calls <- res$calls
 	if(is.null(calls)) {
 		exit("No calls found")
@@ -332,8 +332,8 @@ function(res, filename, check.file.extension=TRUE)
 		if(length(res$row.descriptions) != NROW(res$data)) {
 			exit("invalid length of row.descriptions")
 		}
-	} 
-	
+	}
+
 	if(check.file.extension) {
 		filename <- check.extension(filename, ".res")
 	}
@@ -343,23 +343,23 @@ function(res, filename, check.file.extension=TRUE)
 	cat("Description\tAccession\t", file=f, append=TRUE)
 	cat(colnames(res$data), sep="\t\t", file=f, append=TRUE)
 	cat("\n", file=f, append=TRUE)
-	
+
 	# write the descriptions
 	if(!is.null(res$column.descriptions)) {
 		cat("\t", file=f, append=TRUE)
 		cat(res$column.descriptions, sep="\t\t", file=f, append=TRUE)
-	} 
+	}
 	cat("\n", file=f, append=TRUE)
-	
+
 	# write the number of rows
 	cat(NROW(res$data), "\n", sep="", file=f, append=TRUE)
-	
+
 	row.descriptions <- res$row.descriptions
 	if(is.null(row.descriptions)) {
 	    row.descriptions <- ''
 	}
 	m <- cbind(row.descriptions, row.names(res$data))
-	
+
 	#s <- integer(0)
    	#s <- c(1, 2)
    	#cols <- NCOL(res$data)
@@ -369,39 +369,39 @@ function(res, filename, check.file.extension=TRUE)
 	#	s <- c(s, cols+i + offset)
 	#}
 	#m <- cbind(res$data, calls)
-	
+
 	# combine matrices
 	for(i in 1:NCOL(res$data)) {
 		m <- cbind(m, res$data[,i])
 		m <- cbind(m, as.character(calls[,i]))
 	}
-	
+
 	write.table(m, file=f, col.names=FALSE, row.names=FALSE, append=TRUE, quote=FALSE, sep="\t", eol="\n")
 	return(filename)
 }
 
 read.cls <- function(file) {
-	# returns a list containing the following components: 
+	# returns a list containing the following components:
 	# labels the factor of class labels
 	# names the names of the class labels if present
-	
-	if (is.character(file)) 
-        if (file == "") 
+
+	if (is.character(file))
+        if (file == "")
             file <- stdin()
         else {
             file <- file(file, "r")
             on.exit(close(file))
         }
-    if (!inherits(file, "connection")) 
+    if (!inherits(file, "connection"))
         stop("argument `file' must be a character string or connection")
-   
+
 	line1 <- scan(file, nlines=1, what="character", quiet=TRUE)
-	
+
 	numberOfDataPoints <- as.integer(line1[1])
 	numberOfClasses <- as.integer(line1[2])
-	
+
 	line2 <- scan(file, nlines=1, what="character", quiet=TRUE)
-	
+
 	classNames <- NULL
 	if(line2[1] =='#') { # class names are given
 		classNames <- as.vector(line2[2:length(line2)])
@@ -409,7 +409,7 @@ read.cls <- function(file) {
 	} else {
 		line3 <- line2
 	}
-	
+
 	if(is.null(classNames)) {
 		labels <- as.factor(line3)
 		classNames <- levels(labels)
@@ -417,7 +417,7 @@ read.cls <- function(file) {
 		labels <- factor(line3, labels=classNames)
 	}
 	if(numberOfDataPoints!=length(labels)) {
-		stop("Incorrect number of data points") 	
+		stop("Incorrect number of data points")
 	}
 	r <- list(labels=labels,names=classNames)
 	r
@@ -435,7 +435,7 @@ write.factor.to.cls <- function(factor, filename, check.file.extension=TRUE)
 	cat(file=file, length(codes), length(levels(factor)), "1\n")
 
 	levels <- levels(factor)
-	
+
 	cat(file=file, "# ")
 	num.levels <- length(levels)
 
@@ -449,7 +449,7 @@ write.factor.to.cls <- function(factor, filename, check.file.extension=TRUE)
 	}
 	cat(file=file, levels[num.levels])
 	cat(file=file, "\n")
-	
+
 	num.samples <- length(codes)
 	if(num.samples-1 != 0)
 	{
@@ -461,7 +461,7 @@ write.factor.to.cls <- function(factor, filename, check.file.extension=TRUE)
 	}
 
 	cat(file=file, codes[num.samples]-1)
-	return(filename) 
+	return(filename)
 }
 
 
@@ -479,7 +479,7 @@ function(cls, filename, check.file.extension=TRUE)
 	}
 	file <- file(filename, "w")
 	on.exit(close(file))
- 
+
 	cat(file=file, length(cls$labels), length(levels(cls$labels)), "1\n")
 
     # write cls names
@@ -511,14 +511,14 @@ function(cls, filename, check.file.extension=TRUE)
 
 
 read.clm <- function(input.file.name) {
-	s <- read.table(input.file.name, colClasses = "character", sep="\t", comment.char="", quote="", strip.white=T) 
+	s <- read.table(input.file.name, colClasses = "character", sep="\t", comment.char="", quote="", strip.white=T)
 	columns <- ncol(s)
 	scan.names <- s[,1]
 	sample.names <- NULL # names to use in the gct file instead of the scan name
 	if(columns > 1) {
 		sample.names <- s[,2]
 	}
-	
+
 	for(i in 1:length(scan.names)) { # check for duplicate scans
 		scan.names[i] <- trim(scan.names[i])
 		scan <- scan.names[i]
@@ -527,7 +527,7 @@ read.clm <- function(input.file.name) {
 			exit(paste("Duplicate scan name:", scan))
 		}
 	}
-	
+
 	f <- NULL
 	if(columns > 2) {
 		class.names <- s[, 3]
@@ -543,7 +543,7 @@ write.gct <-
 function(gct, filename, check.file.extension=TRUE)
 {
 	if(check.file.extension) {
-		filename <- check.extension(filename, ".gct") 
+		filename <- check.extension(filename, ".gct")
 	}
 	if(is.null(gct$data)) {
 		exit("No data given.")
@@ -554,23 +554,23 @@ function(gct, filename, check.file.extension=TRUE)
 	if(is.null(colnames(gct$data))) {
 		exit("No column names given.")
 	}
-	
+
 	rows <- dim(gct$data)[1]
 	columns <- dim(gct$data)[2]
-	
+
 	if(rows!=length(row.names(gct$data))) {
 		exit("Number of data rows (", rows, ") not equal to number of row names (", length(row.names(gct$data)), ").")
 	}
 	if(columns!=length(colnames(gct$data))) {
 		exit("Number of data columns (", columns , " not equal to number of column names (", length(colnames(gct$data)), ").")
 	}
-		
+
 	if(!is.null(gct$row.descriptions)) {
 		if(length(gct$row.descriptions)!=rows) {
 			exit("Number of row descriptions (", length(gct$row.descriptions), ") not equal to number of row names (", rows, ").")
 		}
 	}
-	
+
 	row.descriptions <- gct$row.descriptions
 	if(is.null(row.descriptions)) {
 	    row.descriptions <- ''
@@ -578,13 +578,13 @@ function(gct, filename, check.file.extension=TRUE)
 	m <- cbind(row.names(gct$data), row.descriptions, gct$data)
 	f <- file(filename, "w")
 	on.exit(close(f))
-	
+
 	cat("#1.2", "\n", file=f, append=TRUE, sep="")
 	cat(rows, "\t", columns, "\n", file=f, append=TRUE, sep="")
 	cat("Name", "\t", file=f, append=TRUE, sep="")
 	cat("Description", file=f, append=TRUE, sep="")
 	names <- colnames(gct$data)
-	
+
 	for(j in 1:length(names)) {
 		cat("\t", names[j], file=f, append=TRUE, sep="")
 	}
@@ -602,7 +602,7 @@ is.package.installed <- function(libdir, pkg) {
 
 install.package <- function(dir, windows, mac, other) {
 	isWindows <- Sys.info()[["sysname"]]=="Windows"
-	isMac <- Sys.info()[["sysname"]]=="Darwin" 
+	isMac <- Sys.info()[["sysname"]]=="Darwin"
 	if(isWindows) {
 		f <- paste(dir, windows, sep="")
 		.install.windows(f)
@@ -612,7 +612,7 @@ install.package <- function(dir, windows, mac, other) {
 	} else { # install from source
 		f <- paste(dir, other, sep="")
 		.install.unix(f)
-	}	
+	}
 }
 
 .install.windows <- function(pkg) {
@@ -635,13 +635,13 @@ install.package <- function(dir, windows, mac, other) {
        cmd <- paste(cmd, "-l", lib)
        cmd <- paste(cmd, " '", pkg, "'", sep = "")
        status <- suppressMessages(system(cmd))
-       if (status != 0) 
+       if (status != 0)
          cat("\tpackage installation failed\n")
     }
 }
 
 trim <- function(s) {
-	sub(' +$', '', s, extended = TRUE) 
+	sub(' +$', '', s, extended = TRUE)
 }
 
 setLibPath <- function(libdir) {
@@ -655,7 +655,7 @@ setLibPath <- function(libdir) {
 
 yes.no.to.boolean <- function(s) {
 	if(s=="yes") {
-		return(TRUE)	
+		return(TRUE)
 	}
 	return(FALSE)
 }
@@ -672,7 +672,7 @@ isWindows <- function() {
 
 
 isMac <- function() {
-	Sys.info()[["sysname"]]=="Darwin" 
+	Sys.info()[["sysname"]]=="Darwin"
 }
 
 unzip <- function(zip.filename, dest, options="") {
@@ -702,10 +702,7 @@ parse.command.line <- function(args) {
 		value <- substring(args[[i]], 3, nchar(args[[i]]))
 		if(flag=='') {
 			next
-		}	
+		}
 		result[flag] <- value
 	}
 }
-
-
-

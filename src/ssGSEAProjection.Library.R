@@ -29,8 +29,8 @@ ssGSEA.project.dataset <- function(
     gene.set.selection  = "ALL",
 
     # normalization method applied to input feature data:
-    # "rank", "log" or "log.rank"
-    sample.norm.type    = "rank",
+    # "none", "rank", "log" or "log.rank"
+    sample.norm.type    = "none",
 
     # exponential weight applied to ranking in calculation of
     # enrichment score
@@ -54,7 +54,7 @@ ssGSEA.project.dataset <- function(
     if (gene.symbol.column != "Name" && gene.symbol.column != "Description") {
         stop("invalid value for gene.symbol.column argument: ", gene.symbol.column)
     }
-    if (sample.norm.type != "rank" && sample.norm.type != "log" && sample.norm.type != "log.rank") {
+    if (sample.norm.type != "none" && sample.norm.type != "rank" && sample.norm.type != "log" && sample.norm.type != "log.rank") {
         stop("invalid value for sample.norm.type.argument: ", sample.norm.type)
     }
     if (combine.mode != "combine.off" && combine.mode != "combine.replace" && combine.mode != "combine.add") {
@@ -82,8 +82,9 @@ ssGSEA.project.dataset <- function(
     Ng <- length(m[,1])
 
     # Sample normalization
-
-    if (sample.norm.type == "rank") {
+    if (sample.norm.type == "none") {
+        print(paste("No normalization to be made"))
+    } else if (sample.norm.type == "rank") {
         for (j in 1:Ns) {  # column rank normalization
             m[,j] <- rank(m[,j], ties.method = "average")
         }
@@ -115,7 +116,7 @@ ssGSEA.project.dataset <- function(
         }
         max.G <- max(max.G, max(GSDB$size.G))
         max.N <- max.N +  GSDB$N.gs
-        
+
     }
 
     # create matrix (gs) containing all gene set definitions
@@ -422,7 +423,7 @@ Read.GeneSets.gmt <- function(
     temp.names <- vector(length = max.Ng, mode = "character")
     temp.desc <- vector(length = max.Ng, mode = "character")
     gs.count <- 1
-    for (i in 1:max.Ng) {   
+    for (i in 1:max.Ng) {
         gene.set.size <- length(unlist(strsplit(temp[[i]], "\t"))) - 2
         gs.line <- noquote(unlist(strsplit(temp[[i]], "\t")))
         gene.set.name <- gs.line[1]
@@ -452,7 +453,7 @@ Read.GeneSets.gmt <- function(
     gs.names <- temp.names[1:Ng]
     gs.desc <- temp.desc[1:Ng]
     size.G <- temp.size.G[1:Ng]
- 
+
     return(list(N.gs = Ng, gs = gs, gs.names = gs.names, gs.desc = gs.desc, size.G = size.G, max.N.gs = max.Ng))
 } # end of Read.GeneSets.gmt
 
@@ -472,21 +473,21 @@ Read.GeneSets.gmx <- function(
 
     # gmx file defines gene sets column-wise
     # thus, length of temp (number of lines/rows of gmx file) is the size of the largest gene set in collection
-  
+
     df.temp <- t(read.table(gs.gmx, header=TRUE, sep="\t"))
     all.gs.names <- row.names(df.temp)
     all.gs.desc <- as.vector(df.temp[,1])
     all.gs <- as.matrix(df.temp[,-1])
     all.gs.sizes <- as.vector(rowSums(all.gs != ""))
-    pass.thresholds <- (all.gs.sizes >= thres.min & all.gs.sizes <= thres.max)  
+    pass.thresholds <- (all.gs.sizes >= thres.min & all.gs.sizes <= thres.max)
     gs.names <- all.gs.names[pass.thresholds]
     gs.desc <- all.gs.desc[pass.thresholds]
     gs.sizes <- all.gs.sizes[pass.thresholds]
     gs <- all.gs[pass.thresholds,]
     max.Ng <- length(all.gs.names)
     Ng <- length(gs.names)
-    
-            
+
+
     # N.gs = number of gene sets defined in gmx file that satisfy the min and max thresholds
     # gs = matrix containing gene set collections, one per line, satisfying min/max thresholds
     # gs.names = vector of names of gene sets (of length N.gs)
@@ -496,5 +497,3 @@ Read.GeneSets.gmx <- function(
     return (list(N.gs = Ng, gs = gs, gs.names = gs.names, gs.desc = gs.desc, size.G = gs.sizes, max.N.gs = max.Ng))
 
 } # end of Read.GeneSets.gmx
-
-

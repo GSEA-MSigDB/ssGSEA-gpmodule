@@ -10,7 +10,7 @@ ssGSEA.projection.cmdline <- function(...)
     gene.sets.db.list.filename       <- NA
     gene.symbol.column               <- "Name"
     gene.set.selection               <- "ALL"
-    sample.normalization.method      <- "rank"
+    sample.normalization.method      <- "none"
     weighting.exponent               <- 0.75
     min.overlap                      <- 1
     combine.mode                     <- "combine.all"
