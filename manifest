@@ -14,7 +14,7 @@ taskType=Projection
 version=Beta series: Unified the Gene Set DB selector parameters and better downloading of MSigDB files.  Removed Java dependency.  Updated to give access to MSigDB v6.2.
 cpuType=any
 os=any
-LSID=urn\:lsid\:broad.mit.edu\:cancer.software.genepattern.module.analysis\:00270\:9.1
+LSID=urn\:lsid\:broad.mit.edu\:cancer.software.genepattern.module.analysis\:00270\:999999999
 publicationDate=03/22/2012 11\:14
 job.docker.image=genepattern/docker-r-2-15:0.1
 
