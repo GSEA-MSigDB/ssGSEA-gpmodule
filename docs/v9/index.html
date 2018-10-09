@@ -98,8 +98,8 @@
         <tr>
             <td valign="top">gene sets database files&nbsp;<span style="color:red;">*</span></td>
             <td valign="top">
-            <p>This parameter's drop-down allows you to select gene sets from the <a href="http://www.gsea-msigdb.org/gsea/msigdb/index.jsp">Molecular Signatures Database (MSigDB) </a>on the GSEA website. &nbsp;This drop-down provides access to only the most current version of MSigDB.&nbsp; You can also upload your own gene set file(s) in 
-            <a href="http://www.broadinstitute.org/cancer/software/genepattern/gp_guides/file-formats/sections/gmt">GMT</a>,             <a href="http://www.broadinstitute.org/cancer/software/genepattern/gp_guides/file-formats/sections/gmx">GMX</a>, or 
+            <p>This parameter's drop-down allows you to select gene sets from the <a href="http://www.gsea-msigdb.org/gsea/msigdb/index.jsp">Molecular Signatures Database (MSigDB) </a>on the GSEA website. &nbsp;This drop-down provides access to only the most current version of MSigDB.&nbsp; You can also upload your own gene set file(s) in
+            <a href="http://www.broadinstitute.org/cancer/software/genepattern/gp_guides/file-formats/sections/gmt">GMT</a>,             <a href="http://www.broadinstitute.org/cancer/software/genepattern/gp_guides/file-formats/sections/gmx">GMX</a>, or
             <a href="http://www.broadinstitute.org/cancer/software/genepattern/gp_guides/file-formats/sections/grp">GRP</a> format.&nbsp;</p>
 
             <p>If you want to use files from an earlier version of MSigDB you will need to download them from the archived releases on the <a href="http://www.gsea-msigdb.org/gsea/downloads.jsp">website</a>.
@@ -115,7 +115,7 @@
 		</tr>
 		<tr>
 			<td valign="top">sample normalization method&nbsp;<span style="color:red;">*</span></td>
-			<td valign="top">Normalization method applied to expression data.&nbsp; Supported methods are <em>rank</em>, <em>log.rank</em>, and <em>log</em>.&nbsp; (Default: <em>rank</em>)</td>
+			<td valign="top">Normalization method applied to expression data (if the option "<em>none</em>" is selected, data will not be normalized).&nbsp; Supported methods are <em>none</em>, <em>rank</em>, <em>log.rank</em>, and <em>log</em>.&nbsp; (Default: <em>none</em>)</td>
 		</tr>
 		<tr>
 			<td valign="top">weighting exponent&nbsp;<span style="color:red;">*</span></td>
@@ -225,7 +225,7 @@
                         <tr>
                             <td>9</td>
                             <td>Not&nbsp;yet&nbsp;released</td>
-                            <td>Beta series: Unified the Gene Set DB selector parameters and better downloading of MSigDB files.  Removed Java dependency.</td>
+                            <td>Beta series: Unified the Gene Set DB selector parameters and better downloading of MSigDB files.  Removed Java dependency.  Updated to give access to MSigDB v6.2.  Added a no-normalize option as the default.</td>
                         </tr>
 						<tr>
 							<td>8</td>
@@ -275,7 +275,7 @@
 
 
 	<footer class="container fluid gp-footer">
-    <div class="fluid text-center">Copyright © 2003-2017 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.</div> 
+    <div class="fluid text-center">Copyright © 2003-2017 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.</div>
 </footer>
 
 </body></html>

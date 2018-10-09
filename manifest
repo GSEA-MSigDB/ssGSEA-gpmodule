@@ -11,7 +11,7 @@ privacy=public
 userid=GenePattern
 quality=production
 taskType=Projection
-version=Beta series: Unified the Gene Set DB selector parameters and better downloading of MSigDB files.  Removed Java dependency.  Updated to give access to MSigDB v6.2.
+version=Beta series: Unified the Gene Set DB selector parameters and better downloading of MSigDB files.  Removed Java dependency.  Updated to give access to MSigDB v6.2.  Added a no-normalize option as the default.
 cpuType=any
 os=any
 LSID=urn\:lsid\:broad.mit.edu\:cancer.software.genepattern.module.analysis\:00270\:999999999
@@ -70,14 +70,14 @@ p5_prefix_when_specified=
 p5_type=java.lang.String
 p5_value=
 
-p6_default_value=rank
+p6_default_value=none
 p6_description=Method used to normalize gene expression data
 p6_fileFormat=
 p6_name=sample.normalization.method
 p6_optional=
 p6_prefix_when_specified=
 p6_type=java.lang.String
-p6_value=rank;log;log.rank
+p6_value=none;rank;log;log.rank
 
 p7_default_value=0.75
 p7_description=Module authors strongly recommend against changing from default.

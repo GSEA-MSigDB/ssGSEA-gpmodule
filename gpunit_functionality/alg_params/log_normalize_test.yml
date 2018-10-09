@@ -5,7 +5,7 @@ name: ssGSEAProjection log_normalize_test
 description: Test using log normalization.  This is a variation of simple_real_data_test with a cut-down dataset.
 params:
         input.gct.file: "<%gpunit.testData%>gpunit/ssGSEAProjection/v9/input/P53_14samples_collapsed_symbols.gct"
-        output.file.prefix: 
+        output.file.prefix:
         gene.sets.database.files: [ "<%gpunit.testData%>gpunit/ssGSEAProjection/v9/input/c1.symbols.reduced.gmt" ]
         gene.symbol.column: "Column 1"
         gene.set.selection: "ALL"
