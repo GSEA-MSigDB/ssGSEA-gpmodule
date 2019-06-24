@@ -27,4 +27,4 @@ The GSEA project is currently a joint effort of the Broad Institute and the Univ
 The ssGSEAProjection module is written in 100% pure R.  It has been tested on R-2.5 and R-2.15; running it with other versions of R may be possible but are unsupported. 
 
 ------
-Copyright (c) 2012-2017 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
+Copyright (c) 2012-2019 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
