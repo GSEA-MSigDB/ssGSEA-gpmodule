@@ -20,11 +20,13 @@ If you have any comments, suggestions or bugs to report, please see our [Contact
   
 David Eby was responsible for the open-source conversion of the module and handles current maintenance and new feature development.  While David is listed on the initial commit to this public GitHub repository, original authorship is due to the individuals listed in the papers referenced in the [module documentation](docs/v10/index.html), regardless of the GitHub history metadata.
 
+**With the release of v10.0.1**, this module was renamed from "ssGSEAProjection" to just "ssGSEA" for clarity and brevity, as it is commonly referred to by this name.  The underlying algorithm and code remain the same.
+
 The GSEA project is currently a joint effort of the Broad Institute and the University of California San Diego, and funded by the National Cancer Institute of the National Institutes of Health (PI: JP Mesirov).
 
 # Dependencies
 
-The ssGSEA module is written in 100% pure R.  It has been tested on R-2.5 and R-2.15; running it with other versions of R may be possible but are unsupported. 
+The ssGSEA module is written in 100% pure R.  It has been tested on R-2.5, R-2.15, and R-3.2; running it with other versions of R may be possible but is unsupported. 
 
 ------
 Copyright (c) 2012-2020 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
