@@ -10,7 +10,7 @@ The ssGSEA module for GenePattern is made available under the terms of a BSD-sty
 
 #  Latest Version
 
-The latest binary release of this software can be obtained from the GenePattern module repository, available from the Administration screen of the web UI.  It is currently in Beta release as v9.x. 
+The latest binary release of this software can be obtained from the GenePattern module repository, available from the Administration screen of the web UI.
 
 If you have any comments, suggestions or bugs to report, please see our [Contact page](http://www.gsea-msigdb.org/gsea/contact.jsp) for information on how to reach us.
 
