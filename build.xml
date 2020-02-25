@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright (c) 2012-2017 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
+  Copyright (c) 2012-2020 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
 -->
 
-<project basedir="" default="devReleaseModule" name="ssGSEAProjection">
+<project basedir="" default="devReleaseModule" name="ssGSEA">
 
     <target name="init">
-        <tstamp />
+        <tstamp>
+            <format property="publish.time" pattern="MM/dd/yyyy HH:mm " />
+            <format property="publish.time.short" pattern="MM/dd/yyyy " />
+        </tstamp>
         <property name="test.version" value="999999999"/>
         <property name="dest.dir" value="build" />
 
@@ -15,18 +18,21 @@
 
     <target name="init_devrelease" depends="init">
     	<!-- Set the full.version property so that it doesn't come in from release.properties -->
-        <property name="full.version" value="DEV_BUILD" />    	
+        <property name="full.version" value="DEV_BUILD" />
+        <property name="version.date" value="${publish.time}" />
         <property name="prereleasingModule" value="false" />
         <property name="quality.level" value="development" />
     </target>
 
     <!-- Bump the build number and set the quality flag if we're doing a prerelease or release -->
     <target name="init_prerelease" depends="init">
+        <property name="version.date" value="${publish.time}" />
         <property name="prereleasingModule" value="true" />
         <property name="quality.level" value="preproduction" />
     </target>
 
     <target name="init_release" depends="init">
+        <property name="version.date" value="${publish.time.short}" />
         <property name="prereleasingModule" value="false" />
         <property name="quality.level" value="production" />
     </target>
@@ -45,30 +51,36 @@
 
     <target name="create-zip" depends="addLSIDtoManifest">
         <zip destfile="${dest.dir}/${ant.project.name}_v${full.version}.zip" whenempty="fail" defaultexcludes="true">
+            <fileset dir="." includes="*.html, *.json, LICENSE*.txt, release.properties" />
+            <fileset dir="${dest.dir}" includes="manifest" />
             <fileset dir="src" includes="*.R"/>
-            <fileset dir="." includes="manifest, *.html, *.pdf"/>
-        </zip>
+         </zip>
     </target>
 
-    <target name="devReleaseModule" depends="init_devrelease,load-release-props,create-zip,resetManifest" />
+    <target name="devReleaseModule" depends="init_devrelease,load-release-props,create-zip" />
 
-    <target name="prereleaseModule" depends="init_prerelease,update-release-props,load-release-props,create-zip,resetManifest" />
+    <target name="prereleaseModule" depends="init_prerelease,update-release-props,load-release-props,create-zip" />
     
-    <target name="releaseModule" depends="init_release,update-release-props,load-release-props,create-zip,resetManifest" />
+    <target name="releaseModule" depends="init_release,update-release-props,load-release-props,create-zip" />
     
     <target name="addLSIDtoManifest" depends="init,getLSID">
-        <tstamp>
-            <format property="publish.time" pattern="MM/dd/yyyy HH:mm " />
-        </tstamp>
-
         <!-- Work on a copy of the manifest to avoid unnecessary churn in version control. -->
-        <copy file="manifest" tofile="manifest.tmp" preservelastmodified="true" overwrite="true" />
+        <copy file="manifest" tofile="${dest.dir}/manifest" preservelastmodified="true" overwrite="true" />
 
-        <!-- NOTE: this will overwrite any LSID already in the manifest file -->
-        <propertyfile file="manifest">
+    	<loadproperties srcfile="${dest.dir}/manifest" prefix="meta" prefixValues="false">
+    		<filterchain>
+    			<linecontains><contains value="version=" /></linecontains>
+    		</filterchain>
+    	</loadproperties>
+
+        <!-- Adjust the quality level, set the LSID to the (computed) version, and assign the publicationDate.
+             Also, prepend the date to the version so it will be available in Manage Modules.
+             NOTE: this will overwrite these values already in the manifest file. -->
+        <propertyfile file="${dest.dir}/manifest">
             <entry key="quality" value="${quality.level}" />
             <entry key="LSID" value="${LSID}" />
             <entry key="publicationDate" value="${publish.time}" />
+        	<entry key="version" value="${version.date}: ${meta.version}" />
         </propertyfile>
     </target>
 
@@ -81,9 +93,5 @@
             <not><equals arg1="${full.version}" arg2="DEV_BUILD" /></not>
         </condition>
         <echo>${LSID.key} = ${LSID}</echo>
-    </target>
-
-    <target name="resetManifest">
-        <move file="manifest.tmp" tofile="manifest" preservelastmodified="true" overwrite="true" failonerror="true" />
     </target>
 </project>

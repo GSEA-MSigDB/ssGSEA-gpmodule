@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <!--
-  Copyright (c) 2012-2019 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
+  Copyright (c) 2012-2020 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
 -->
-<!-- saved from url=(0094)http://software.broadinstitute.org/cancer/software/genepattern/modules/docs/ssGSEAProjection/8 -->
 <html class=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>ssGSEAProjection (v9.1.2)</title>
+  <title>ssGSEA (v10.0.1)</title>
   <link href="./application.css" media="all" rel="stylesheet">
   <script src="./application.js"></script><style>.cke{visibility:hidden;}</style><style type="text/css"></style>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,13 +16,13 @@
 <body>
 	<div class="gp-content-header fluid">
 	<div class="container">
-		<h1>ssGSEAProjection (v9.1.2)</h1>
+		<h1>ssGSEA (v10.0.1)</h1>
 	</div>
 </div>
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<p style="font-size: 1.2em; margin-top: 20px;">Performs single sample GSEA Projection</p>
+			<p style="font-size: 1.2em; margin-top: 20px;">Performs single sample GSEA</p>
 			<div class="row">
 				<div class="col-sm-4">
 					<p><strong>Author: </strong>GenePattern</p>
@@ -57,11 +56,13 @@
 
 <p>In working with the transformed data, the goal is to find biological processes that are differentially active across the phenotype of interest and to use these measures of process activity to characterize the phenotype.&nbsp; Thus, the benefit here is that the ssGSEA projection transforms the data to a higher-level (pathways instead of genes) space representing a more biologically interpretable set of features on which analytic methods can be applied.</p>
 
-<p>As a practical matter,&nbsp;ssGSEAProjection essentially reduces the dimensionality of the set. &nbsp;You can look for correlations between the gene set enrichment scores and the phenotype of interest (e.g., tumor vs. normal) using the GCT output with&nbsp;a module like&nbsp;ComparativeMarkerSelection. &nbsp;You could&nbsp;also try clustering the data set;&nbsp;whichever gene sets stand out as strong predictors of the phenotype of interest, specific clusters can then be mapped to biochemical pathways, giving you insight into what is driving the phenotype of interest.</p>
+<p>As a practical matter,&nbsp;ssGSEA essentially reduces the dimensionality of the set. &nbsp;You can look for correlations between the gene set enrichment scores and the phenotype of interest (e.g., tumor vs. normal) using the GCT output with&nbsp;a module like&nbsp;ComparativeMarkerSelection. &nbsp;You could&nbsp;also try clustering the data set;&nbsp;whichever gene sets stand out as strong predictors of the phenotype of interest, specific clusters can then be mapped to biochemical pathways, giving you insight into what is driving the phenotype of interest.</p>
 
 <p>While the GCT can be passed along to any module accepting that format, it does not make sense to run it through GSEA.</p>
 
 <p>This module implements the single-sample GSEA projection methodology described in Barbie et al, 2009.</p>
+
+<p><strong>NOTE:</strong> with the release of v10.0.1, this module was renamed from "ssGSEAProjection" to just "ssGSEA" for clarity and brevity, as it is commonly referred to by this name.  The underlying algorithm and code remain the same.</p>
 
 <h2>References</h2>
 
@@ -220,6 +221,11 @@
 				</thead>
 				<tbody>
                         <tr>
+                            <td>10.0.1</td>
+                            <td>2020-2-26</td>
+                            <td>Renamed from ssGSEAProjection. Updated to R-3.2</td>
+                        </tr>
+                        <tr>
                             <td>9.1.2</td>
                             <td>2019-10-16</td>
                             <td>Updated to give access to MSigDB v7.0.  Unified the Gene Set DB selector parameters and better downloading of MSigDB files.  Removed Java dependency.  Added a no-normalize option as the default.</td>
@@ -272,7 +278,7 @@
 
 
 	<footer class="container fluid gp-footer">
-    <div class="fluid text-center">Copyright © 2003-2019 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.</div>
+    <div class="fluid text-center">Copyright © 2003-2020 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.</div>
 </footer>
 
 </body></html>

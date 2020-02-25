@@ -1,12 +1,12 @@
-# Copyright (c) 2012-2018 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
-#module: urn:lsid:broad.mit.edu:cancer.software.genepattern.module.analysis:00270:9
-module: ssGSEAProjection
-name: ssGSEAProjection gene_symbol_column_test
+# Copyright (c) 2012-2020 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
+#module: urn:lsid:broad.mit.edu:cancer.software.genepattern.module.analysis:00270:10
+module: ssGSEA
+name: ssGSEA gene_symbol_column_test
 description: Test using a dataset with gene symbols in Column 2.  This is a variation of simple_real_data_test.
 params:
-        input.gct.file: "<%gpunit.testData%>gpunit/ssGSEAProjection/v9/input/P53_14samples_col2sym.gct"
+        input.gct.file: "<%gpunit.testData%>gpunit/ssGSEA/v10/input/P53_14samples_col2sym.gct"
         output.file.prefix: 
-        gene.sets.database.files: [ "<%gpunit.testData%>gpunit/ssGSEAProjection/v9/input/c1.symbols.reduced.gmt" ]
+        gene.sets.database.files: [ "<%gpunit.testData%>gpunit/ssGSEA/v10/input/c1.symbols.reduced.gmt" ]
         gene.symbol.column: "Column 2"
         gene.set.selection: "ALL"
         sample.normalization.method: "rank"
@@ -18,4 +18,4 @@ assertions:
         files:
             "P53_14samples_col2sym.PROJ.gct":
                 diffCmd: ../diffWithTolerance.sh
-                diff: "<%gpunit.resultData%>gpunit/ssGSEAProjection/v9/output/file_params/gene_symbol_column_test/P53_14samples_col2sym.PROJ.gct"
+                diff: "<%gpunit.resultData%>gpunit/ssGSEA/v10/output/file_params/gene_symbol_column_test/P53_14samples_col2sym.PROJ.gct"

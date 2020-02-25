@@ -1,12 +1,12 @@
-# Copyright (c) 2012-2018 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
-#module: urn:lsid:broad.mit.edu:cancer.software.genepattern.module.analysis:00270:9
-module: ssGSEAProjection
-name: ssGSEAProjection invalid_gene_set_selection_test
+# Copyright (c) 2012-2020 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
+#module: urn:lsid:broad.mit.edu:cancer.software.genepattern.module.analysis:00270:10
+module: ssGSEA
+name: ssGSEA invalid_gene_set_selection_test
 description: Test using an invalid gene set name in the gene.set.selection (should fail).  This is a variation of simple_real_data_test with a cut-down dataset.
 params:
-        input.gct.file: "<%gpunit.testData%>gpunit/ssGSEAProjection/v9/input/P53_14samples_collapsed_symbols.gct"
+        input.gct.file: "<%gpunit.testData%>gpunit/ssGSEA/v10/input/P53_14samples_collapsed_symbols.gct"
         output.file.prefix: 
-        gene.sets.database.files: [ "<%gpunit.testData%>gpunit/ssGSEAProjection/v9/input/c1.symbols.reduced.gmt" ]
+        gene.sets.database.files: [ "<%gpunit.testData%>gpunit/ssGSEA/v10/input/c1.symbols.reduced.gmt" ]
         gene.symbol.column: "Column 1"
         gene.set.selection: "NOT_PRESENT"
         sample.normalization.method: "rank"
@@ -18,4 +18,4 @@ assertions:
         files:
             "stderr.txt":
                 diffCmd: ../grepMessage.sh No.matches.with.gene.set.selection
-                diff: "<%gpunit.resultData%>gpunit/ssGSEAProjection/v9/output/alg_params/invalid_gene_set_selection_test/stderr.txt"
+                diff: "<%gpunit.resultData%>gpunit/ssGSEA/v10/output/alg_params/invalid_gene_set_selection_test/stderr.txt"

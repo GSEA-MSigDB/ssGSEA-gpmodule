@@ -1,4 +1,4 @@
-# Copyright (c) 2012-2017 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
+# Copyright (c) 2012-2020 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
 #
 # Projects gene expression data or ATARiS consistency scores (in either
 # case, encoded in GCT input files) to gene set enrichment scores.

@@ -1,9 +1,9 @@
-# Copyright (c) 2012-2017 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
+# Copyright (c) 2012-2020 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
 
-# ssGSEA Projection
+# ssGSEA
 
 # processes the cmd line for the ssGSEA.project.dataset
-ssGSEA.projection.cmdline <- function(...)
+ssGSEA.cmdline <- function(...)
 {
     input.gct.filename               <- NA
     output.prefix                    <- NA
@@ -91,7 +91,7 @@ ssGSEA.projection.cmdline <- function(...)
     }
 
     setup(libdir)
-    source(paste(libdir,"ssGSEAProjection.Library.R", sep=''))
+    source(file.path(libdir,"ssGSEA.Library.R"))
 
     suppressWarnings(ssGSEA.project.dataset(input.gct.filename,
                                             paste(output.prefix, ".gct", sep=""),
@@ -106,7 +106,7 @@ ssGSEA.projection.cmdline <- function(...)
 
 setup <- function(libdir)
 {
-    source(paste(libdir, "common.R", sep=''))
+    source(file.path(libdir,"common.R"))
     setLibPath(libdir)
     install.required.packages(libdir)
 }
@@ -118,4 +118,4 @@ install.required.packages <- function(libdir)
 }
 
 # Call the command-line function, passing the args from GenePattern
-ssGSEA.projection.cmdline(commandArgs(trailingOnly=T))
+ssGSEA.cmdline(commandArgs(trailingOnly=T))

@@ -1,12 +1,12 @@
-# Copyright (c) 2012-2018 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
-#module: urn:lsid:broad.mit.edu:cancer.software.genepattern.module.analysis:00270:9
-module: ssGSEAProjection
-name: ssGSEAProjection gender_dataset_test
+# Copyright (c) 2012-2020 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
+#module: urn:lsid:broad.mit.edu:cancer.software.genepattern.module.analysis:00270:10
+module: ssGSEA
+name: ssGSEA gender_dataset_test
 description: A test using the Gender dataset.  This is a variation on simple_real_data_test.
 params:
-        input.gct.file: "<%gpunit.testData%>gpunit/ssGSEAProjection/v9/input/Gender_collapsed_symbols.gct"
+        input.gct.file: "<%gpunit.testData%>gpunit/ssGSEA/v10/input/Gender_collapsed_symbols.gct"
         output.file.prefix: 
-        gene.sets.database.files: [ "<%gpunit.testData%>gpunit/ssGSEAProjection/v9/input/c1.symbols.reduced.gmt" ]
+        gene.sets.database.files: [ "<%gpunit.testData%>gpunit/ssGSEA/v10/input/c1.symbols.reduced.gmt" ]
         gene.symbol.column: "Column 1"
         gene.set.selection: "ALL"
         sample.normalization.method: "rank"
@@ -18,4 +18,4 @@ assertions:
         files:
             "Gender_collapsed_symbols.PROJ.gct":
                 diffCmd: ../diffWithTolerance.sh
-                diff: "<%gpunit.resultData%>gpunit/ssGSEAProjection/v9/output/file_params/gender_dataset_test/Gender_collapsed_symbols.PROJ.gct"
+                diff: "<%gpunit.resultData%>gpunit/ssGSEA/v10/output/file_params/gender_dataset_test/Gender_collapsed_symbols.PROJ.gct"

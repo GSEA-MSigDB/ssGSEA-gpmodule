@@ -1,8 +1,8 @@
 License
 
-The ssGSEAProjection module for GenePattern is distributed under the following BSD-style license:
+The ssGSEA module for GenePattern is distributed under the following BSD-style license:
 
-Copyright © 2003-2019 The Broad Institute, Inc., Massachusetts Institute of Technology and Regents of 
+Copyright © 2003-2020 The Broad Institute, Inc., Massachusetts Institute of Technology and Regents of 
 the University of California.  All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided 
@@ -35,5 +35,5 @@ If, by operation of law or otherwise, any of the aforementioned warranty disclai
 inapplicable, your sole remedy, regardless of the form of action, including, but not limited to, negligence 
 and strict liability, shall be replacement of the software with an updated version if one exists.
 
-Development of the ssGSEAProjection module for GenePattern was funded, in whole or in part, by the National Institutes of Health.
+Development of the ssGSEA module for GenePattern was funded, in whole or in part, by the National Institutes of Health.
 

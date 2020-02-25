@@ -1,12 +1,12 @@
-# Copyright (c) 2012-2018 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
-#module: urn:lsid:broad.mit.edu:cancer.software.genepattern.module.analysis:00270:9
-module: ssGSEAProjection
-name: ssGSEAProjection restrict_gene_set_selection_test
+# Copyright (c) 2012-2020 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
+#module: urn:lsid:broad.mit.edu:cancer.software.genepattern.module.analysis:00270:10
+module: ssGSEA
+name: ssGSEA restrict_gene_set_selection_test
 description: Test restricting the gene sets to a named list.  This is a variation of simple_real_data_test with a cut-down dataset.
 params:
-        input.gct.file: "<%gpunit.testData%>gpunit/ssGSEAProjection/v9/input/P53_14samples_collapsed_symbols.gct"
+        input.gct.file: "<%gpunit.testData%>gpunit/ssGSEA/v10/input/P53_14samples_collapsed_symbols.gct"
         output.file.prefix: 
-        gene.sets.database.files: [ "<%gpunit.testData%>gpunit/ssGSEAProjection/v9/input/c1.symbols.reduced.gmt" ]
+        gene.sets.database.files: [ "<%gpunit.testData%>gpunit/ssGSEA/v10/input/c1.symbols.reduced.gmt" ]
         gene.symbol.column: "Column 1"
         gene.set.selection: "chr1,chr2,chr3,chr4,chr5,chr6,chr7,chr8,chr9,chr10,chr11,chr12,chr13,chr14,chr15,chr16,chr17,chr18,chr19,chr20,chr21,chr22,chrX,chrY"
         sample.normalization.method: "rank"
@@ -18,4 +18,4 @@ assertions:
         files:
             "P53_14samples_collapsed_symbols.PROJ.gct":
                 diffCmd: ../diffWithTolerance.sh
-                diff: "<%gpunit.resultData%>gpunit/ssGSEAProjection/v9/output/alg_params/restrict_gene_set_selection_test/P53_14samples_collapsed_symbols.PROJ.gct"
+                diff: "<%gpunit.resultData%>gpunit/ssGSEA/v10/output/alg_params/restrict_gene_set_selection_test/P53_14samples_collapsed_symbols.PROJ.gct"

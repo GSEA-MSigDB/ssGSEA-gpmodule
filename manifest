@@ -1,22 +1,22 @@
-# Copyright (c) 2003-2019 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
+# Copyright (c) 2003-2020 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
 author=GenePattern
 taskDoc=doc.html
-description=Performs single sample GSEA Projection
-commandLine=<R2.15_Rscript> <libdir>ssGSEAProjection.R -l<libdir> -i<input.gct.file>  -o<output.file.prefix> -D<gene.sets.database.files> -c<gene.symbol.column>  -s<gene.set.selection> -n<sample.normalization.method> -w<weighting.exponent> -v<min.gene.set.size> -C<combine.mode>
+description=Performs single sample GSEA
+commandLine=Rscript <libdir>ssGSEA.R -l<libdir> -i<input.gct.file>  -o<output.file.prefix> -D<gene.sets.database.files> -c<gene.symbol.column>  -s<gene.set.selection> -n<sample.normalization.method> -w<weighting.exponent> -v<min.gene.set.size> -C<combine.mode>
 JVMLevel=
 language=R
-name=ssGSEAProjection
+name=ssGSEA
 fileFormat=gct
 privacy=public
 userid=GenePattern
 quality=production
 taskType=Projection
-version=Updated to give access to MSigDB v7.0.  Unified the Gene Set DB selector parameters and better downloading of MSigDB files.  Removed Java dependency.  Added a no-normalize option as the default.
+version=Renamed from ssGSEAProjection.  Updated to R-3.2.
 cpuType=any
 os=any
 LSID=urn\:lsid\:broad.mit.edu\:cancer.software.genepattern.module.analysis\:00270\:999999999
 publicationDate=03/22/2012 11\:14
-job.docker.image=genepattern/docker-r-2-15:0.1
+job.docker.image=genepattern/docker-r-3-2:0.1
 
 p1_MODE=IN
 p1_TYPE=FILE
