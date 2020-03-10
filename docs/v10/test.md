@@ -1,4 +1,4 @@
-# ssGSEA (v10.0.1)
+# ssGSEA (v10.0.2)
 
 Performs single sample GSEA
 
@@ -28,6 +28,9 @@ Analysis (GSEA), calculates separate enrichment scores for each pairing
 of a sample and gene set.  Each ssGSEA enrichment score represents the
 degree to which the genes in a particular gene set are coordinately up-
 or down-regulated within a sample.
+
+**NOTE:** with the release of v10.0.1, this module was renamed from
+"ssGSEAProjection" to just "ssGSEA".
 
 ## Discussion
 
@@ -255,6 +258,11 @@ R-2.15
 </tr>
 </thead>
 <tbody>
+<tr class="even">
+<td align="left">10.0.2</td>
+<td align="left">2020-3-10</td>
+<td align="left">Renamed from ssGSEAProjection. Updated to R-3.2.  Documentation updates</td>
+</tr>
 <tr class="odd">
 <td align="left">10.0.1</td>
 <td align="left">2020-2-26</td>
