@@ -1,4 +1,4 @@
-# ssGSEA (v10.0.2)
+# ssGSEA (v10.0.x)
 
 Performs single sample GSEA
 
@@ -258,6 +258,11 @@ R-3.2
 </tr>
 </thead>
 <tbody>
+<tr class="odd">
+<td align="left">10.0.3</td>
+<td align="left">2020-4-2</td>
+<td align="left">Updated to MSigDB v7.1.</td>
+</tr>
 <tr class="even">
 <td align="left">10.0.2</td>
 <td align="left">2020-3-10</td>
