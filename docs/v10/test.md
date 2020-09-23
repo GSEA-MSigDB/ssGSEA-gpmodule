@@ -259,6 +259,11 @@ R-3.2
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left">10.0.4</td>
+<td align="left">2020-9-23</td>
+<td align="left">Updated to MSigDB v7.2.</td>
+</tr>
+<tr class="odd">
 <td align="left">10.0.3</td>
 <td align="left">2020-4-2</td>
 <td align="left">Updated to MSigDB v7.1.</td>
