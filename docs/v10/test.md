@@ -118,7 +118,7 @@ remain the same.
 <tbody>
 <tr class="odd">
 <td align="left">input gct file <span style="color:red;">*</span></td>
-<td align="left"><a href="http://www.broadinstitute.org/cancer/software/genepattern/gp_guides/file-formats/sections/gct">GCT</a> file containing input dataset’s gene expression data.  The dataset must contain gene expression data for a minimum of two samples.</td>
+<td align="left"><a href="http://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GCT:_Gene_Cluster_Text_file_format_.28.2A.gct.29">GCT</a> file containing input dataset’s gene expression data.  The dataset must contain gene expression data for a minimum of two samples.</td>
 </tr>
 <tr class="even">
 <td align="left">output file prefix</td>
