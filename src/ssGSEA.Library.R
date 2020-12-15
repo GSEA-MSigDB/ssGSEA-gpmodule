@@ -69,8 +69,7 @@ ssGSEA.project.dataset <- function(
     # in Ataris or hairpin gct files the gene symbols are column 2
     if (gene.symbol.column == "Name") {
         gene.names <- row.names(m)
-    }
-    else if (gene.symbol.column == "Description") {
+    } else if (gene.symbol.column == "Description") {
         gene.names <- dataset$row.descriptions
         row.names(m) <- gene.names
     }
@@ -109,8 +108,7 @@ ssGSEA.project.dataset <- function(
         gsdb.split <- unlist(strsplit(gsdb, "\\."))
         if (tail(gsdb.split, n=1) == "gmt") {
             GSDB <- Read.GeneSets.gmt(gsdb, thres.min = 2, thres.max = 2000, gene.names = NULL)
-        }
-        else  {
+        } else  {
             # is a gmx formatted file
             GSDB <- Read.GeneSets.gmx(gsdb, thres.min = 2, thres.max = 2000)
         }
@@ -130,8 +128,7 @@ ssGSEA.project.dataset <- function(
         gsdb.split <- unlist(strsplit(gsdb, "\\."))
         if (tail(gsdb.split, n=1) == "gmt") {
             GSDB <- Read.GeneSets.gmt(gsdb, thres.min = 2, thres.max = 2000, gene.names = NULL)
-        }
-        else  {
+        } else  {
             # is a gmx formatted file
             GSDB <- Read.GeneSets.gmx(gsdb, thres.min = 2, thres.max = 2000)
         }
@@ -154,7 +151,7 @@ ssGSEA.project.dataset <- function(
             stop("No matches with gene.set.selection")
         }
         locs <- locs[!is.na(locs)]
-        if(N.gs > 1) {
+        if (N.gs > 1) {
             gs <- gs[locs,]
         } else {
           # Force vector to matrix if only one gene set specified
@@ -201,11 +198,10 @@ ssGSEA.project.dataset <- function(
     N.gs <- sum(locs)
     print(paste("N.gs after overlap prunning:", N.gs))
     if (N.gs > 1) {
-        score.matrix <- score.matrix[locs,]
-    }
-    else {
+        score.matrix <- as.matrix(score.matrix[locs,], drop = FALSE)
+    } else {
         # Force vector to matrix if only one gene set specified
-        score.matrix <- t(as.matrix(score.matrix[locs,]))
+        score.matrix <- t(as.matrix(score.matrix[locs,], drop = FALSE))
     }
     gs.names <- gs.names[locs]
     gs.descs <- gs.descs[locs]
@@ -295,12 +291,9 @@ ssGSEA.project.dataset <- function(
         print(paste("total entries:", length(score.matrix.2[,1])))
     }
 
-    if (length(score.matrix.2[,1]) == 0)
-    {
+    if (length(score.matrix.2[,1]) == 0) {
         stop("No output gct file written: no gene sets satisfied the min overlap criterion")
-    }
-    else
-    {
+    } else {
         colnames(score.matrix.2) <- sample.names
         row.names(score.matrix.2) <- gs.names.2
         gct <- list(data=score.matrix.2, row.descriptions=gs.descs.2)
@@ -383,7 +376,7 @@ Project.to.GeneSet <- function(
 
         if( max.ES > -min.ES ){
             arg.ES <- which.max(RES)
-        } else{
+        } else {
             arg.ES <- which.min(RES)
         }
         # calculates the area under RES by adding up areas of individual
