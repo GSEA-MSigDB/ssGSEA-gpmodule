@@ -471,11 +471,10 @@ Read.GeneSets.gmx <- function(
     all.gs.names <- row.names(df.temp)
     all.gs.desc <- as.vector(df.temp[,1])
     if (length(all.gs.names) > 1) {
-       all.gs <- as.matrix(df.temp[,-1], drop = FALSE)
+       all.gs <- as.matrix(df.temp[,-1])
     } else {
         # Force vector to matrix if only one gene set specified
        all.gs <- t(as.matrix(df.temp[,-1], drop = FALSE))
-       rownames(all.gs)<-all.gs.names
     }
     all.gs.sizes <- as.vector(rowSums(all.gs != ""))
     pass.thresholds <- (all.gs.sizes >= thres.min & all.gs.sizes <= thres.max)
