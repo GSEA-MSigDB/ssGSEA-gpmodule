@@ -193,8 +193,6 @@ If you want to use files from an earlier version of MSigDB you will need to down
     that gene.  The CollapseDataset GenePattern module can make this
     transformation.
 
-The GCT file must contain gene expression data for at least two samples.
-
 2.  gene sets database files  
       
     One or more optional GMT or GMX file containing a collection of gene
