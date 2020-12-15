@@ -164,8 +164,6 @@
 	If a GCT file’s row identifiers are probe IDs, and gene sets are defined through a list of human gene symbols, it will be necessary to collapse all probe set expression values for a given gene into a single expression value and use a human gene symbol to represent that gene.&nbsp; The CollapseDataset GenePattern module can make this transformation.</li>
 </ol>
 
-<p style="margin-left: 40px;">The GCT file must contain gene expression data for at least two samples.</p>
-
 <ol start="2">
 	<li>gene sets database files<br>
 	<br>
@@ -220,6 +218,11 @@
 					</tr>
 				</thead>
 				<tbody>
+                        <tr>
+                            <td>10.0.5</td>
+                            <td>2020-12-15</td>
+                            <td>Fix for single sample GCT files.</td>
+                        </tr>
                         <tr>
                             <td>10.0.4</td>
                             <td>2020-9-23</td>
