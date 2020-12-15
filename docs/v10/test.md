@@ -258,6 +258,11 @@ R-3.2
 </tr>
 </thead>
 <tbody>
+<tr class="even">
+<td align="left">10.0.5</td>
+<td align="left">2020-12-15</td>
+<td align="left">Fix for single sample GCT files.</td>
+</tr>
 <tr class="odd">
 <td align="left">10.0.4</td>
 <td align="left">2020-9-23</td>
