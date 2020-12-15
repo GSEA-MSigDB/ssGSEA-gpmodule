@@ -471,7 +471,7 @@ Read.GeneSets.gmx <- function(
     gs.names <- all.gs.names[pass.thresholds]
     gs.desc <- all.gs.desc[pass.thresholds]
     gs.sizes <- all.gs.sizes[pass.thresholds]
-    gs <- all.gs[pass.thresholds,]
+    gs <- all.gs[pass.thresholds, , drop = FALSE]
     max.Ng <- length(all.gs.names)
     Ng <- length(gs.names)
 
