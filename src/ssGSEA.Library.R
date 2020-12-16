@@ -197,12 +197,7 @@ ssGSEA.project.dataset <- function(
     print(paste("N.gs before overlap prunning:", N.gs))
     N.gs <- sum(locs)
     print(paste("N.gs after overlap prunning:", N.gs))
-    if (N.gs > 1) {
-        score.matrix <- as.matrix(score.matrix[locs,], drop = FALSE)
-    } else {
-        # Force vector to matrix if only one gene set specified
-        score.matrix <- t(as.matrix(score.matrix[locs,], drop = FALSE))
-    }
+    score.matrix <- as.matrix(score.matrix[locs, , drop = FALSE])
     gs.names <- gs.names[locs]
     gs.descs <- gs.descs[locs]
 
@@ -470,13 +465,13 @@ Read.GeneSets.gmx <- function(
     df.temp <- t(read.table(gs.gmx, header=TRUE, sep="\t"))
     all.gs.names <- row.names(df.temp)
     all.gs.desc <- as.vector(df.temp[,1])
-    all.gs <- as.matrix(df.temp[,-1])
+    all.gs <- as.matrix(df.temp[,-1, drop = FALSE])
     all.gs.sizes <- as.vector(rowSums(all.gs != ""))
     pass.thresholds <- (all.gs.sizes >= thres.min & all.gs.sizes <= thres.max)
     gs.names <- all.gs.names[pass.thresholds]
     gs.desc <- all.gs.desc[pass.thresholds]
     gs.sizes <- all.gs.sizes[pass.thresholds]
-    gs <- all.gs[pass.thresholds,]
+    gs <- all.gs[pass.thresholds, , drop = FALSE]
     max.Ng <- length(all.gs.names)
     Ng <- length(gs.names)
 
