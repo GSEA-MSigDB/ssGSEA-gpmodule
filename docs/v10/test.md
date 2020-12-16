@@ -201,10 +201,6 @@ If you want to use files from an earlier version of MSigDB you will need to down
     [the GMX file
     format](http://www.broadinstitute.org/cancer/software/genepattern/gp_guides/file-formats/sections/gmx)in
     the GenePattern file formats documentation).  
-      
-    Note: there is a known issue that module fails when given a GMX
-    containing a single gene set (one column).  The workaround is to use
-    the GMT format for such gene sets instead as these work fine.
 
 ## Output Files
 
@@ -256,6 +252,10 @@ R-3.2
 </tr>
 </thead>
 <tbody>
+<tr class="even">
+<td align="left">10.0.6</td>
+<td align="left">2020-12-16</td>
+<td align="left">Fix for single sample GCT files and single set GMX files.</td>
 <tr class="even">
 <td align="left">10.0.5</td>
 <td align="left">2020-12-15</td>

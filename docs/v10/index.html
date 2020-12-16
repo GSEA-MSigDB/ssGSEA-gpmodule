@@ -167,9 +167,7 @@
 <ol start="2">
 	<li>gene sets database files<br>
 	<br>
-	One or more optional GMT or GMX file containing a collection of gene set definitions (see <a href="http://www.broadinstitute.org/cancer/software/genepattern/gp_guides/file-formats/sections/gmt">the GMT file format </a>&nbsp;and <a href="http://www.broadinstitute.org/cancer/software/genepattern/gp_guides/file-formats/sections/gmx">the GMX file format </a>in the GenePattern file formats documentation).<br>
-	<br>
-	Note: there is a known issue that module fails when given a GMX containing&nbsp;a single gene set (one column). &nbsp;The workaround is to use the GMT format for such gene sets instead as these work fine.</li>
+	One or more optional GMT or GMX file containing a collection of gene set definitions (see <a href="http://www.broadinstitute.org/cancer/software/genepattern/gp_guides/file-formats/sections/gmt">the GMT file format </a>&nbsp;and <a href="http://www.broadinstitute.org/cancer/software/genepattern/gp_guides/file-formats/sections/gmx">the GMX file format </a>in the GenePattern file formats documentation).</li>
 </ol>
 
 <h2>Output Files</h2>
@@ -218,6 +216,11 @@
 					</tr>
 				</thead>
 				<tbody>
+                        <tr>
+                            <td>10.0.6</td>
+                            <td>2020-12-16</td>
+                            <td>Fix for single sample GCT files and single set GMX files.</td>
+                        </tr>
                         <tr>
                             <td>10.0.5</td>
                             <td>2020-12-15</td>
