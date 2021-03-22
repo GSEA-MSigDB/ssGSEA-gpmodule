@@ -14,7 +14,7 @@ ln -s $2 $diffdir/in2/$base2
 
 cd $diffdir
 
-/opt/R/2.15.3/bin/Rscript --no-save --quiet --slave --no-restore ${DIFF_DATASETS_HOME}/src/run_diff_datasets_gpunit.R --first.input.file="in1/$base1" --second.input.file="in2/$base2" --round.method=round --round.digits=6
+Rscript --no-save --quiet --slave --no-restore ${DIFF_DATASETS_HOME}/src/run_diff_datasets_gpunit.R --first.input.file="in1/$base1" --second.input.file="in2/$base2" --round.method=round --round.digits=6
 status=$?
 cd ..
 rm -rf $diffdir

@@ -252,16 +252,21 @@ R-3.2
 </tr>
 </thead>
 <tbody>
+<tr class="odd">
+<td align="left">10.0.7</td>
+<td align="left">2021-3-23</td>
+<td align="left">Updated to MSigDB v7.2.</td>
+</tr>
 <tr class="even">
 <td align="left">10.0.6</td>
 <td align="left">2020-12-16</td>
 <td align="left">Fix for single sample GCT files and single set GMX files.</td>
-<tr class="even">
+<tr class="odd">
 <td align="left">10.0.5</td>
 <td align="left">2020-12-15</td>
 <td align="left">Fix for single sample GCT files.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">10.0.4</td>
 <td align="left">2020-9-23</td>
 <td align="left">Updated to MSigDB v7.2.</td>
