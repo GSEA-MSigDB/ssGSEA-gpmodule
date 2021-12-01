@@ -194,9 +194,9 @@ ssGSEA.project.dataset <- function(
 
     # eliminate gene sets for which there was insufficient overlap
     locs <- !is.na(score.matrix[,1])
-    print(paste("N.gs before overlap prunning:", N.gs))
+    print(paste("N.gs before overlap pruning:", N.gs))
     N.gs <- sum(locs)
-    print(paste("N.gs after overlap prunning:", N.gs))
+    print(paste("N.gs after overlap pruning:", N.gs))
     score.matrix <- as.matrix(score.matrix[locs, , drop = FALSE])
     gs.names <- gs.names[locs]
     gs.descs <- gs.descs[locs]
