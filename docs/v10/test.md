@@ -252,6 +252,11 @@ R-3.2
 </tr>
 </thead>
 <tbody>
+<tr class="even">
+<td align="left">10.0.10</td>
+<td align="left">2022-1-12</td>
+<td align="left">Updated to MSigDB v7.5.</td>
+</tr>
 <tr class="odd">
 <td align="left">10.0.9</td>
 <td align="left">2021-4-22</td>
