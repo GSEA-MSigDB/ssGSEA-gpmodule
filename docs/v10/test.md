@@ -1,4 +1,4 @@
-# ssGSEA (v10.0.x)
+# ssGSEA (v10.1.x)
 
 Performs single sample GSEA
 
@@ -253,6 +253,11 @@ R-3.2
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left">10.1.0</td>
+<td align="left">2022-10-2</td>
+<td align="left">Updated to Human MSigDB v2022.1.Hs and Mouse MSigDB 2022.1.Mm.</td>
+</tr>
+<tr class="even">
 <td align="left">10.0.12</td>
 <td align="left">2022-9-15</td>
 <td align="left">Updated to Human MSigDB v2022.1.Hs. Direct support for Mouse MSigDB 2022.1.Mm is not yet available</td>
