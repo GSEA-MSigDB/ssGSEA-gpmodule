@@ -126,7 +126,7 @@ remain the same.
 </tr>
 <tr class="odd">
 <td align="left">gene sets database files <span style="color:red;">*</span></td>
-<td align="left"><p>This parameter's drop-down allows you to select gene sets from the <a href="http://www.gsea-msigdb.org/gsea/msigdb/index.jsp">Molecular Signatures Database (MSigDB)</a>on the GSEA website.  This drop-down provides access to only the most current version of MSigDB.  You can also upload your own gene set file(s) in <a href="http://www.broadinstitute.org/cancer/software/genepattern/gp_guides/file-formats/sections/gmt">GMT</a>, <a href="http://www.broadinstitute.org/cancer/software/genepattern/gp_guides/file-formats/sections/gmx">GMX</a>, or <a href="http://www.broadinstitute.org/cancer/software/genepattern/gp_guides/file-formats/sections/grp">GRP</a> format. </p>
+<td align="left"><p>This parameter's drop-down allows you to select gene sets from the <a href="http://www.gsea-msigdb.org/gsea/msigdb/index.jsp">Molecular Signatures Database (MSigDB)</a>on the GSEA website.  This drop-down provides access to only the most current version of MSigDB.  You can also upload your own gene set file(s) in <a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29">GMT</a>, <a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMX:_Gene_MatriX_file_format_.28.2A.gmx.29">GMX</a>, or <a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GRP:_Gene_set_file_format_.28.2A.grp.29">GRP</a> format. </p>
 If you want to use files from an earlier version of MSigDB you will need to download them from the archived releases on the <a href="http://www.gsea-msigdb.org/gsea/downloads.jsp">website</a>.</td>
 </tr>
 <tr class="even">
@@ -173,7 +173,7 @@ If you want to use files from an earlier version of MSigDB you will need to down
       
     The GCT file containing the input dataset’s gene expression data
     (see the GCT file format information at
-    <http://www.broadinstitute.org/cancer/software/genepattern/gp_guides/file-formats/sections/gct>). 
+    <https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GCT:_Gene_Cluster_Text_file_format_.28.2A.gct.29>). 
     Gene symbols are typically listed in the column with header *Name*;
     however, GCT files containing RNAi data may list the gene symbol
     name in alternative columns.  The “gene symbol column name”
@@ -197,9 +197,9 @@ If you want to use files from an earlier version of MSigDB you will need to down
       
     One or more optional GMT or GMX file containing a collection of gene
     set definitions (see [the GMT file
-    format](http://www.broadinstitute.org/cancer/software/genepattern/gp_guides/file-formats/sections/gmt) and
+    format](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29) and
     [the GMX file
-    format](http://www.broadinstitute.org/cancer/software/genepattern/gp_guides/file-formats/sections/gmx)in
+    format](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMX:_Gene_MatriX_file_format_.28.2A.gmx.29)in
     the GenePattern file formats documentation).  
 
 ## Output Files
