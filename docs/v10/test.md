@@ -235,9 +235,9 @@ R-3.2
 
 <table>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col width="5%" />
+<col width="20%" />
+<col width="75%" />
 </colgroup>
 <thead>
 <tr class="header">

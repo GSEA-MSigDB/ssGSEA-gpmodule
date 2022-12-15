@@ -3,8 +3,14 @@
 
 @import "{{ site.theme }}";
 
+a small {
+  color:#333;
+}
+
 body {
   font:16px/24px 'Quattrocento Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: aliceblue;
+  color: #333;
 }
 
 h1 {
@@ -20,11 +26,17 @@ h2 {
 h3 {
   font-size: 20px;
   line-height: 26px;
+  color:#333;
 }
 
 h4 {
   font-size: 18px;
   line-height: 22px;
+  color:#333;
+}
+
+h5, h6 {
+  color:#333;
 }
 
 /* modernist 
@@ -56,6 +68,7 @@ header {
   padding:20px 20px;
 
   h1 {
+    font:40px/48px 'Quattrocento Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-shadow: 0px 0px 0px;
     border-bottom: 0px;
     padding-bottom: 0px;
@@ -73,6 +86,9 @@ section {
 }
 
 nav {
+  a {
+    color:#333;
+  }
   width: 300px; 
   top: 150px;
   margin-left:-660px;
@@ -91,4 +107,8 @@ nav {
       }
     }
   }
+}
+
+ul {
+  list-style: disc;
 }
