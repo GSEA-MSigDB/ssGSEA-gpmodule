@@ -104,68 +104,32 @@ remain the same.
 
 ## Parameters
 
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Name</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">input gct file <span style="color:red;">*</span></td>
-<td align="left"><a href="http://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GCT:_Gene_Cluster_Text_file_format_.28.2A.gct.29">GCT</a> file containing input dataset’s gene expression data.</td>
-</tr>
-<tr class="even">
-<td align="left">output file prefix</td>
-<td align="left">The prefix used for the name of the output GCT file. If unspecified, output prefix will be set to &lt;prefix of input GCT file&gt;.PROJ. The output GCT file will contain the projection of input dataset onto a space of gene set enrichments scores.</td>
-</tr>
-<tr class="odd">
-<td align="left">gene sets database files <span style="color:red;">*</span></td>
-<td align="left"><p>This parameter's drop-down allows you to select gene sets from the <a href="http://www.gsea-msigdb.org/gsea/msigdb/index.jsp">Molecular Signatures Database (MSigDB)</a> on the GSEA website. This drop-down provides access to only the most current version of MSigDB. You can also upload your own gene set file(s) in <a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29">GMT</a>, <a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMX:_Gene_MatriX_file_format_.28.2A.gmx.29">GMX</a>, or <a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GRP:_Gene_set_file_format_.28.2A.grp.29">GRP</a> format.</p>
-If you want to use files from an earlier version of MSigDB you will need to download them from the archived releases on the <a href="http://www.gsea-msigdb.org/gsea/downloads.jsp">website</a>.</td>
-</tr>
-<tr class="even">
-<td align="left">gene symbol column <span style="color:red;">*</span></td>
-<td align="left">Input GCT file column containing gene symbol names. In most cases, this will be column 1. (default: <em>Column 1</em>)</td>
-</tr>
-<tr class="odd">
-<td align="left">gene set selection <span style="color:red;">*</span></td>
-<td align="left">Comma-separated list of gene set names on which to project the input expression data. Alternatively, this field may be set to <em>ALL</em>, indicating that the input expression dataset is to be projected to all gene sets defined in the specified gene set database(s). (default: <em>ALL</em>)</td>
-</tr>
-<tr class="even">
-<td align="left">sample normalization method <span style="color:red;">*</span></td>
-<td align="left">Normalization method applied to expression data (if the option &quot;<em>none</em>&quot; is selected, data will not be normalized). Supported methods are <em>none</em>, <em>rank</em>, <em>log.rank</em>, and <em>log</em>. (Default: <em>none</em>)</td>
-</tr>
-<tr class="odd">
-<td align="left">weighting exponent <span style="color:red;">*</span></td>
-<td align="left">Exponential weight employed in calculation of enrichment scores. The default value of 0.75 was selected after extensive testing. The module authors strongly recommend against changing from default. (Default: <em>0.75</em>)</td>
-</tr>
-<tr class="even">
-<td align="left">min gene set size <span style="color:red;">*</span></td>
-<td align="left">Exclude from the projection gene sets whose overlap with the genes listed in the input GCT file are less than this value. (Default: 10)</td>
-</tr>
-<tr class="odd">
-<td align="left">combine mode <span style="color:red;">*</span></td>
-<td align="left"><p></p>
-<p>Options for combining enrichment scores for paired *_UP and *_DN gene sets. (Default: <em>combine.add</em>)</p>
-<p>For gene set collections that do not utilize _UP and _DN suffixes at the ends of set names, the <em>combine mode</em> parameter option is irrelevant as all the modes give the same output.</p>
-<p>For Gene set collections that utilize _UP and _DN suffixes, which include MSigDB v5's <em>C2.all</em>, <em>C2.CGP</em>, <em>C6.all</em>, and <em>C7.all</em>, recombine sets in two different ways:</p>
-<ul>
-<li><em>Combine.add</em> mode [default] keeps the original paired sets with independent scores and adds the new combined set with combined score to the output file, increasing the number of gene sets by the number of paired sets.</li>
-<li><em>Combine.replace</em> replaces the original paired gene sets with a new combined gene set and thus reduces the number of gene sets in the output by half the paired sets. Combined sets report combined enrichment scores.</li>
-<li><em>Combine.off</em> keeps _UP and _DN sets separate.</li>
-</ul>
-<p></p></td>
-</tr>
-</tbody>
-</table>
+- **Input gct file**<span style="color:red;">*</span>
+    - [GCT]("http://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GCT:_Gene_Cluster_Text_file_format_.28.2A.gct.29") file containing input dataset’s gene expression data.</td>
+- **Output file prefix**
+    - The prefix used for the name of the output GCT file. If unspecified, output prefix will be set to &lt;prefix of input GCT file&gt;.PROJ. The output GCT file will contain the projection of input dataset onto a space of gene set enrichments scores.
+- **Gene sets database files**<span style="color:red;">*</span>
+    - This parameter's drop-down allows you to select gene sets from the [Molecular Signatures Database (MSigDB)](http://www.gsea-msigdb.org/gsea/msigdb/index.jsp) on the GSEA website. This drop-down provides access to only the most current version of MSigDB. You can also upload your own gene set file(s) in [GMT](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29), [GMX](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMX:_Gene_MatriX_file_format_.28.2A.gmx.29), or [GRP](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GRP:_Gene_set_file_format_.28.2A.grp.29) format.
+    - If you want to use files from an earlier version of MSigDB you will need to download them from the archived releases on the [website](http://www.gsea-msigdb.org/gsea/downloads.jsp).
+- **Gene symbol column**<span style="color:red;">*</span>
+    - Input GCT file column containing gene symbol names. In most cases, this will be column 1. (default: *Column 1*)
+- **Gene set selection**<span style="color:red;">*</span>
+    - Comma-separated list of gene set names on which to project the input expression data. Alternatively, this field may be set to <em>ALL</em>, indicating that the input expression dataset is to be projected to all gene sets defined in the specified gene set database(s). (default: *ALL*)
+- **Sample normalization method**<span style="color:red;">*</span>
+    - Normalization method applied to expression data (if the option *"none"* is selected, data will not be normalized). Supported methods are *none*, *rank*, *log.rank*, and *log*. (Default: *none*)
+- **Weighting exponent**<span style="color:red;">*</span>
+    - Exponential weight employed in calculation of enrichment scores. The default value of 0.75 was selected after extensive testing. The module authors strongly recommend against changing from default. (Default: *0.75*)
+- **Min gene set size**<span style="color:red;">*</span>
+    - Exclude from the projection gene sets whose overlap with the genes listed in the input GCT file are less than this value. (Default: 10)
+- **Combine mode**<span style="color:red;">*</span>
+    - Options for combining enrichment scores for paired _UP and _DN gene sets. (Default: *combine.add*)
+    - For gene set collections that do not utilize _UP and _DN suffixes at the ends of set names, the *combine mode* parameter option is irrelevant as all the modes give the same output. 
+    - For Gene set collections that utilize _UP and _DN suffixes, which include MSigDB v5's *C2.all*, *C2.CGP*, *C6.all*, and *C7.all*, recombine sets in two different ways:
+      - *Combine.add* mode [default] keeps the original paired sets with independent scores and adds the new combined set with combined score to the output file, increasing the number of gene sets by the number of paired sets. 
+      - *Combine.replace* replaces the original paired gene sets with a new combined gene set and thus reduces the number of gene sets in the output by half the paired sets. Combined sets report combined enrichment scores. 
+      - *Combine.off* keeps _UP and _DN sets separate.
 
-\* - required
+<span style="color:red;">*</span> = required
 
 ## Input Files
 
@@ -233,131 +197,28 @@ R-3.2
 
 ## Version Comments
 
-<table>
-<colgroup>
-<col width="5%" />
-<col width="20%" />
-<col width="75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Version</th>
-<th align="left">Release Date</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">10.1.0</td>
-<td align="left">2022-10-2</td>
-<td align="left">Updated to Human MSigDB v2022.1.Hs and Mouse MSigDB 2022.1.Mm.</td>
-</tr>
-<tr class="even">
-<td align="left">10.0.12</td>
-<td align="left">2022-9-15</td>
-<td align="left">Updated to Human MSigDB v2022.1.Hs. Direct support for Mouse MSigDB 2022.1.Mm is not yet available</td>
-</tr>
-<tr class="odd">
-<td align="left">10.0.11</td>
-<td align="left">2022-1-19</td>
-<td align="left">Updated to MSigDB v7.5.1.</td>
-</tr>
-<tr class="even">
-<td align="left">10.0.10</td>
-<td align="left">2022-1-12</td>
-<td align="left">Updated to MSigDB v7.5.</td>
-</tr>
-<tr class="odd">
-<td align="left">10.0.9</td>
-<td align="left">2021-4-22</td>
-<td align="left">Fixed minor typo.</td>
-</tr>
-<tr class="even">
-<td align="left">10.0.8</td>
-<td align="left">2021-4-2</td>
-<td align="left">Updated to MSigDB v7.4.</td>
-</tr>
-<tr class="odd">
-<td align="left">10.0.7</td>
-<td align="left">2021-3-23</td>
-<td align="left">Updated to MSigDB v7.3.</td>
-</tr>
-<tr class="even">
-<td align="left">10.0.6</td>
-<td align="left">2020-12-16</td>
-<td align="left">Fix for single sample GCT files and single set GMX files.</td>
-<tr class="odd">
-<td align="left">10.0.5</td>
-<td align="left">2020-12-15</td>
-<td align="left">Fix for single sample GCT files.</td>
-</tr>
-<tr class="even">
-<td align="left">10.0.4</td>
-<td align="left">2020-9-23</td>
-<td align="left">Updated to MSigDB v7.2.</td>
-</tr>
-<tr class="odd">
-<td align="left">10.0.3</td>
-<td align="left">2020-4-2</td>
-<td align="left">Updated to MSigDB v7.1.</td>
-</tr>
-<tr class="even">
-<td align="left">10.0.2</td>
-<td align="left">2020-3-10</td>
-<td align="left">Renamed from ssGSEAProjection. Updated to R-3.2.  Documentation updates</td>
-</tr>
-<tr class="odd">
-<td align="left">10.0.1</td>
-<td align="left">2020-2-26</td>
-<td align="left">Renamed from ssGSEAProjection. Updated to R-3.2</td>
-</tr>
-<tr class="even">
-<td align="left">9.1.2</td>
-<td align="left">2019-10-16</td>
-<td align="left">Updated to give access to MSigDB v7.0. Unified the Gene Set DB selector parameters and better downloading of MSigDB files. Removed Java dependency. Added a no-normalize option as the default.</td>
-</tr>
-<tr class="odd">
-<td align="left">8</td>
-<td align="left">2017-05-18</td>
-<td align="left">Updated to give access to MSigDB v6.0. Updated to use GenePattern native file lists. Fixes a bug to improve certain error messages.</td>
-</tr>
-<tr class="even">
-<td align="left">7</td>
-<td align="left">2016-02-04</td>
-<td align="left">Updated to give access to MSigDB v5.1. Updated to R-2.15 and made fixes for portability.</td>
-</tr>
-<tr class="odd">
-<td align="left">6</td>
-<td align="left">2015-06-16</td>
-<td align="left">Add built-in support for MSigDB v5.0, which includes new hallmark gene sets.</td>
-</tr>
-<tr class="even">
-<td align="left">5</td>
-<td align="left">2014-08-11</td>
-<td align="left">Added combine mode parameter</td>
-</tr>
-<tr class="odd">
-<td align="left">4</td>
-<td align="left">2013-06-17</td>
-<td align="left">Updated list of gene sets to include v4.0 MSigDB collections</td>
-</tr>
-<tr class="even">
-<td align="left">3</td>
-<td align="left">2013-02-15</td>
-<td align="left">Updated list of gene sets databases to include v3.1 MSigDB collection, updated FTP download code, made documentation more biologist-friendly.</td>
-</tr>
-<tr class="odd">
-<td align="left">2</td>
-<td align="left">2012-09-19</td>
-<td align="left">Added support for reading of gmx-formatted gene set description files</td>
-</tr>
-<tr class="even">
-<td align="left">1</td>
-<td align="left">2012-07-03</td>
-<td align="left"></td>
-</tr>
-</tbody>
-</table>
+- **10.1.0** (2022-10-2): Updated to Human MSigDB v2022.1.Hs and Mouse MSigDB 2022.1.Mm.
+- **10.0.12** (2022-9-15): Updated to Human MSigDB v2022.1.Hs. Direct support for Mouse MSigDB 2022.1.Mm is not yet available.
+- **10.0.11** (2022-1-19): Updated to MSigDB v7.5.1.
+- **10.0.10** (2022-1-12): Updated to MSigDB v7.5.
+- **10.0.9** (2021-4-22): Fixed minor typo.
+- **10.0.8** (2021-4-2): Updated to MSigDB v7.4.
+- **10.0.7** (2021-3-23): Updated to MSigDB v7.3.
+- **10.0.6** (2020-12-16): Fix for single sample GCT files and single set GMX files.
+- **10.0.5** (2020-12-15): Fix for single sample GCT files.
+- **10.0.4** (2020-9-23): Updated to MSigDB v7.2.
+- **10.0.3** (2020-4-2): Updated to MSigDB v7.1.
+- **10.0.2** (2020-3-10): Renamed from ssGSEAProjection. Updated to R-3.2. Documentation updates.
+- **10.0.1** (2020-2-26): Renamed from ssGSEAProjection. Updated to R-3.2.
+- **9.1.2** (2019-10-16): Updated to give access to MSigDB v7.0. Unified the Gene Set DB selector parameters and better downloading of MSigDB files. Removed Java dependency. Added a no-normalize option as the default.
+- **8** (2017-05-18): Updated to give access to MSigDB v6.0. Updated to use GenePattern native file lists. Fixes a bug to improve certain error messages. 
+- **7** (2016-02-04): Updated to give access to MSigDB v5.1. Updated to R-2.15 and made fixes for portability.
+- **6** (2015-06-16): Add built-in support for MSigDB v5.0, which includes new hallmark gene sets.
+- **5** (2014-08-11): Added combine mode parameter.
+- **4** (2013-06-17): Updated list of gene sets to include v4.0 MSigDB collections. 
+- **3** (2013-02-15): Updated list of gene sets databases to include v3.1 MSigDB collection, updated FTP download code, made documentation more biologist-friendly. 
+- **2** (2012-09-19): Added support for reading of gmx-formatted gene set description files.
+- **1** (2012-07-03)
 
 Copyright © 2003-2020 Broad Institute, Inc., Massachusetts Institute of
 Technology, and Regents of the University of California. All rights
