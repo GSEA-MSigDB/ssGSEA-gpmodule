@@ -105,7 +105,7 @@ remain the same.
 ## Parameters
 
 - **Input gct file**<span style="color:red;">*</span>
-    - [GCT]("http://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GCT:_Gene_Cluster_Text_file_format_.28.2A.gct.29") file containing input dataset’s gene expression data.</td>
+    - [GCT]("http://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GCT:_Gene_Cluster_Text_file_format_.28.2A.gct.29") file containing input dataset’s gene expression data.
 - **Output file prefix**
     - The prefix used for the name of the output GCT file. If unspecified, output prefix will be set to &lt;prefix of input GCT file&gt;.PROJ. The output GCT file will contain the projection of input dataset onto a space of gene set enrichments scores.
 - **Gene sets database files**<span style="color:red;">*</span>
@@ -220,7 +220,7 @@ R-3.2
 - **2** (2012-09-19): Added support for reading of gmx-formatted gene set description files.
 - **1** (2012-07-03)
 
-Copyright © 2003-2020 Broad Institute, Inc., Massachusetts Institute of
+Copyright © 2003-2022 Broad Institute, Inc., Massachusetts Institute of
 Technology, and Regents of the University of California. All rights
 reserved.
 
