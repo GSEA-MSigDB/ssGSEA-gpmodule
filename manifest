@@ -1,7 +1,7 @@
 # Copyright (c) 2003-2022 Broad Institute, Inc., Massachusetts Institute of Technology, and Regents of the University of California.  All rights reserved.
 author=GenePattern
 taskDoc=doc.html
-description=Performs single sample GSEA.  NOTE: with the release of v10.0.1, this module was renamed from "ssGSEAProjection" to just "ssGSEA"
+description=Performs single sample GSEA.  NOTE: with the release of v10.0.1, this module was renamed from "ssGSEAProjection" to just "ssGSEA". For single-cell data, use the <a href="https://genepattern.github.io/Single.Cell.ssGSEA/documentation">Single.Cell.ssGSEA</a> module instead.
 commandLine=Rscript <libdir>ssGSEA.R -l<libdir> -i<input.gct.file>  -o<output.file.prefix> -D<gene.sets.database.files> -c<gene.symbol.column>  -s<gene.set.selection> -n<sample.normalization.method> -w<weighting.exponent> -v<min.gene.set.size> -C<combine.mode>
 JVMLevel=
 language=R
