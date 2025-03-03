@@ -19,7 +19,7 @@ for GSEA questions.
 
 Project each sample within a data set onto a space of gene set
 enrichment scores using the ssGSEA projection methodology described in
-Barbie et al., 2009.
+Barbie et al., 2009.  For single-cell data, use the [Single.Cell.ssGSEA](https://genepattern.github.io/Single.Cell.ssGSEA/documentation) module instead.
 
 ## Summary
 
